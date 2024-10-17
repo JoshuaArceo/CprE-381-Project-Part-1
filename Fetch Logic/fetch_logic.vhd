@@ -33,7 +33,7 @@ ARCHITECTURE structural OF fetch_logic is
             i_D                : in std_logic_vector(N-1 downto 0);
             i_AMT              : in std_logic_vector(4 downto 0);                          
             i_DIR              : in std_logic;                         
-            i_CLK              : in std_logic;       
+            -- i_CLK              : in std_logic;       
             o_Q                : out std_logic_vector(N-1 downto 0)); 
     END COMPONENT;
 
@@ -74,7 +74,7 @@ BEGIN
         i_D                => i_branch_addr,
         i_AMT              => '0',     
         i_DIR              => '0',     
-        i_CLK              => "00010", 
+        -- i_CLK              => "00010", 
         o_Q                => s_branch_addr_shifted
     );
 
@@ -92,7 +92,7 @@ BEGIN
         i_D               => i_jump_addr,
         i_AMT             => '0',     
         i_DIR             => '0',     
-        i_CLK             => "00010", 
+        -- i_CLK             => "00010", 
         o_Q               => s_j_addr_shifted
     );
 

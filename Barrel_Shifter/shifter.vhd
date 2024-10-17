@@ -10,12 +10,13 @@ entity shifter is
         i_D     : in    std_logic_vector(N-1 downto 0);
         i_AMT     : in    std_logic_vector(4 downto 0);
         i_DIR   : in    std_logic;
-        -- i_CLK   : in    std_logic;
         o_Q     : out   std_logic_vector(N-1 downto 0)
     );
 
 end shifter;
 
+
+-- TODO CONVERT TO STRUCTURAL 32 BIT RIGHT SHIFTER WITH SUPPORT FOR LEFT
 architecture dataflow of shifter is
 
     -- Dir 1 = right

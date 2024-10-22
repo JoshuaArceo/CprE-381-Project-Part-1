@@ -26,7 +26,7 @@ end alu;
 0110 sub *
 0111 slt *
 
-1000 subiu
+1000 subu
 1001 sll
 1010 srl
 1011 sra
@@ -38,8 +38,60 @@ end alu;
 
 architecture mixed of alu is
 
-    component 
+    component shifter is 
+    port(
+        i_D     : in    std_logic_vector(N-1 downto 0);
+        i_AMT     : in    std_logic_vector(4 downto 0);
+        i_DIR   : in    std_logic; -- 1 left , 0 right
+        i_ARITH   : in    std_logic; -- 0 logical, 1 arithmetic
+        o_Q     : out   std_logic_vector(N-1 downto 0)
+    );
+    end component;
 
+    component and_32bit is 
+    port(
+        i_A          : in std_logic_vector(31 downto 0);
+        i_B          : in std_logic_vector(31 downto 0);
+        o_F          : out std_logic_vector(31 downto 0)
+    );
+    end component;
+
+    component or_32bit is
+        port(
+        i_A          : in std_logic_vector(31 downto 0);
+        i_B          : in std_logic_vector(31 downto 0);
+        o_F          : out std_logic_vector(31 downto 0)
+    );
+    end component;
+    
+    signal s_adder, s_shifter, s_and, s_or, s_out : std_logic_vector(31 downto 0);
+
+    
+    begin 
+
+    and32: and_32bit 
+    port map(
+        i_A => i_OP_A,
+        i_B => i_OP_B,
+        o_F => s_and
+    );
+
+    or32: or_32bit 
+    port map(
+        i_A => i_OP_A,
+        i_B => i_OP_B,
+        o_F => s_or
+    );
+
+
+
+    if(i_ALUOP = "0000") then
+        s_out <= s_and;
+    elsif(i_ALUOP = "0001") then
+        s_out <= s_or;
+    
+
+    
 
 
 

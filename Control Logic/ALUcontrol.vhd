@@ -4,14 +4,14 @@ use IEEE.std_logic_1164.all;
 entity ALUcontrol is
   port(s_type       : in std_logic_Vector(5 downto 0);
        opcode       : in std_logic_Vector(5 downto 0);
-       s_out        : out std_logic_Vector(4 downto 0)
+       s_out        : out std_logic_Vector(3 downto 0)
 	   );   
 
 end ALUcontrol;
 
 architecture structural of ALUcontrol is
 
-signal temp : std_logic_vector(4 downto 0);
+signal temp : std_logic_vector(3 downto 0);
 
 begin
 

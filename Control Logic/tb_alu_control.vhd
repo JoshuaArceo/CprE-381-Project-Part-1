@@ -10,12 +10,12 @@ architecture mixed of tb_alu_control is
 component ALUcontrol is
   port(s_type       : in std_logic_Vector(5 downto 0);
        opcode       : in std_logic_Vector(5 downto 0);
-       s_out        : out std_logic_Vector(4 downto 0)); 
+       s_out        : out std_logic_Vector(3 downto 0)); 
 end component;
 
 signal s_s_type           : std_logic_vector(5 downto 0);
 signal s_opcode           : std_logic_vector(5 downto 0);
-signal s_s_out            : std_logic_vector(4 downto 0);
+signal s_s_out            : std_logic_vector(3 downto 0);
 
 begin
 

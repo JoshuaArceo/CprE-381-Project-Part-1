@@ -7,6 +7,7 @@ entity add_sub_N is
 	     i_B	: in std_logic_vector(N-1 downto 0);
 	     i_nAdd_Sub	: in std_logic;
 	     o_S	: out std_logic_vector(N-1 downto 0);
+		 o_OF	: out std_logic; -- Overflow 
 	     o_Cout	: out std_logic);
 end add_sub_N;
 
@@ -34,6 +35,14 @@ end component;
 	port(i_A	: in std_logic_vector;
 	     o_F	: out std_logic_vector);
 	
+end component;
+
+component xorg2 is
+	port(
+		i_A          : in std_logic;
+		i_B          : in std_logic;
+		o_F          : out std_logic
+	);
 end component;
 
 --DEBUG PROBLEM: Found myself struggling trying to figure out why sizes weren't matching up because I had this as
@@ -68,5 +77,13 @@ G_NBit_Add_Subs: for i in 0 to N-1 generate
 
 	
 end generate G_NBit_Add_Subs;
+
+overflow: xorg2
+port map(
+	i_A => s_Cin,
+	i_B => o_Cout,
+	o_F => o_OF
+);
+
 
 end structure;

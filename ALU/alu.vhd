@@ -36,7 +36,7 @@ end alu;
 1111    
 *\
 
-architecture mixed of alu is
+architecture structural of alu is
 
     component shifter is 
     port(
@@ -63,9 +63,20 @@ architecture mixed of alu is
         o_F          : out std_logic_vector(31 downto 0)
     );
     end component;
+
+    component add_sub_N is
+        port(
+            i_A	: in std_logic_vector(N-1 downto 0);
+            i_B	: in std_logic_vector(N-1 downto 0);
+            i_nAdd_Sub	: in std_logic;
+            o_S	: out std_logic_vector(N-1 downto 0);
+            o_OF: out std_logic;
+            o_Cout	: out std_logic
+            );
+    end component;
     
     signal s_adder, s_shifter, s_and, s_or, s_out : std_logic_vector(31 downto 0);
-
+    signal s_add_sub, s_cout, s_overflow, s_zero : std_logic;
     
     begin 
 
@@ -83,15 +94,41 @@ architecture mixed of alu is
         o_F => s_or
     );
 
+    addSub: add_sub_N
+    port map(
+        i_A => i_OP_A,
+        i_B => i_OP_B,
+        i_nAdd_Sub => s_add_sub,
+        o_S => s_adder,
+        o_OF => s_overflow
+        o_Cout => s_cout
+    );
+
+
+
+    o_C_out <= '0';
 
 
     if(i_ALUOP = "0000") then
         s_out <= s_and;
     elsif(i_ALUOP = "0001") then
         s_out <= s_or;
+    elsif(i_ALUOP = "0010") then
+        s_add_sub <= 0;
+        s_out <= s_adder;
+    end if;
     
 
+    if(s_out = X"00000000") then 
+        s_zero = '1'
+    end if;
     
+
+
+    o_F <= s_out;
+    o_C_OUT <= s_cout;
+    o_OVERFLOW  <= s_overflow;
+    o_ZERO  <= s_zero;
 
 
 

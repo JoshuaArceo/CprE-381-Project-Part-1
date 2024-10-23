@@ -16,25 +16,23 @@ entity alu is
         );
 end alu;
 
-\*
-0000 and *
-0001 or *
-0010 add/addi *
-0011 addu
-0100 addiu
-0101 xor
-0110 sub *
-0111 slt *
+-- 0000 and *
+-- 0001 or *
+-- 0010 add/addi *
+-- 0011 addu
+-- 0100 addiu
+-- 0101 xor
+-- 0110 sub *
+-- 0111 slt *
 
-1000 subu
-1001 sll
-1010 srl
-1011 sra
-1100 repl.qb
-1101 nor
-1110
-1111    
-*\
+-- 1000 subu
+-- 1001 sll
+-- 1010 srl
+-- 1011 sra
+-- 1100 repl.qb
+-- 1101 nor
+-- 1110
+-- 1111    
 
 architecture structural of alu is
 
@@ -74,9 +72,41 @@ architecture structural of alu is
             o_Cout	: out std_logic
             );
     end component;
+
+    component xor_32bit is 
+        port(
+            i_A          : in std_logic_vector(31 downto 0);
+            i_B          : in std_logic_vector(31 downto 0);
+            o_F          : out std_logic_vector(31 downto 0)
+        );
+    end component;
+
+    component nor_32bit is 
+    port(
+        i_A          : in std_logic_vector(31 downto 0);
+        i_B          : in std_logic_vector(31 downto 0);
+        o_F          : out std_logic_vector(31 downto 0)
+    );
+end component;
     
-    signal s_adder, s_shifter, s_and, s_or, s_out : std_logic_vector(31 downto 0);
-    signal s_add_sub, s_cout, s_overflow, s_zero : std_logic;
+    component xorg2 is
+        port(
+            i_A : in std_logic;
+            i_B          : in std_logic;
+            o_F          : out std_logic
+        );
+    end component;
+
+    component replicator is
+        port(
+            i_A     : in std_logic_vector(31 downto 0);
+            i_Byte  : in std_logic_vector(1 downto 0);
+            o_F     : in std_logic_vector(31 downto 0)
+        );
+    end component;
+    
+    signal s_adder, s_shifter, s_and, s_or, s_xor, s_out, s_slt, s_repl, s_nor : std_logic_vector(31 downto 0);
+    signal s_add_sub, s_cout, s_overflow, s_zero, s_shift_dir, s_shift_type : std_logic;
     
     begin 
 
@@ -100,29 +130,101 @@ architecture structural of alu is
         i_B => i_OP_B,
         i_nAdd_Sub => s_add_sub,
         o_S => s_adder,
-        o_OF => s_overflow
+        o_OF => s_overflow,
         o_Cout => s_cout
     );
 
+    xor32: xor_32bit
+    port map(
+        i_A => i_OP_A,
+        i_B => i_OP_B,
+        o_F => s_xor
+    );
 
+    xorSLT: xorg2
+    port map(
+        i_A => s_overflow,
+        i_B => s_adder(31),
+        o_F => s_slt(0)
+    );
+
+    shift: shifter
+    port map(
+        i_D => i_OP_A,
+        i_AMT => i_OP_A(4 downto 0),
+        i_DIR => s_shift_dir,
+        i_ARITH => s_shift_type,
+        o_Q => s_shifter
+    );
+
+    repl: replicator
+    port map(
+        i_A => i_OP_A,
+        i_Byte => i_OP_B(1 downto 0),
+        o_F => s_repl
+    );
+
+    nor32: nor_32bit
+    port map(
+        i_A => i_OP_A,
+        i_B => i_OP_B,
+        o_F => s_nor
+    );
+
+    s_slt(31 downto 1) <= (others => '0');
+    
 
     o_C_out <= '0';
 
+    with i_ALUOP select
+        s_add_sub <= '1' when "1000" | "0110", --sets sub bit to 1 when sub or subu
+                     '0' when others;
 
-    if(i_ALUOP = "0000") then
-        s_out <= s_and;
-    elsif(i_ALUOP = "0001") then
-        s_out <= s_or;
-    elsif(i_ALUOP = "0010") then
-        s_add_sub <= 0;
-        s_out <= s_adder;
-    end if;
+    with i_ALUOP select
+        s_shift_dir <=  '1' when "1001", --shift left
+                        '0' when others;
+
+    with i_ALUOP select
+        s_shift_type <= '1' when "1011",
+                        '0' when others;
     
 
-    if(s_out = X"00000000") then 
-        s_zero = '1'
-    end if;
+
+-- 0010 add/addi *
+-- 0011 addu
+-- 0100 addiu
+-- 0101 xor
+-- 0110 sub *
+-- 0111 slt *
+
+-- 1000 subu
+-- 1001 sll
+-- 1010 srl
+-- 1011 sra
+-- 1100 repl.qb
+-- 1101 nor
+
+    with i_ALUOP select
+        s_out <= s_and when "0000",--and
+                 s_or when "0001", -- or
+                 s_adder when "0010" | "0011" | "0100" | "0110" | "1000", --add/addi, addu, addiu, sub, subu
+                 s_xor when "0101", --xor
+                 s_slt when "0111", --slt
+                 s_shifter when "1001" | "1010" | "1011", --sll, srl, sra
+                 s_repl when "1100",
+                 s_nor when "1101",
+                 X"00000000" when others;
+
     
+    with i_ALUOP select 
+        o_OVERFLOW <= '0' when "0011" | "0100"| "1000", --addu, addiu, subu
+                       s_overflow when others;
+    
+
+    with s_out select
+        s_zero <= '1' when X"00000000",
+                  '0' when others;
+
 
 
     o_F <= s_out;
@@ -132,4 +234,4 @@ architecture structural of alu is
 
 
 
-end mixed;
+end structural;

@@ -19,8 +19,8 @@ end alu;
 -- 0000 and *
 -- 0001 or *
 -- 0010 add/addi *
--- 0011 addu
--- 0100 addiu
+-- 0011 addu/addiu
+-- 0100 
 -- 0101 xor
 -- 0110 sub *
 -- 0111 slt *
@@ -31,8 +31,7 @@ end alu;
 -- 1011 sra
 -- 1100 repl.qb
 -- 1101 nor
--- 1110
--- 1111    
+
 
 architecture structural of alu is
 
@@ -101,7 +100,7 @@ end component;
         port(
             i_A     : in std_logic_vector(31 downto 0);
             i_Byte  : in std_logic_vector(1 downto 0);
-            o_F     : in std_logic_vector(31 downto 0)
+            o_F     : out std_logic_vector(31 downto 0)
         );
     end component;
     
@@ -109,6 +108,20 @@ end component;
     signal s_add_sub, s_cout, s_overflow, s_zero, s_shift_dir, s_shift_type : std_logic;
     
     begin 
+
+    o_C_out <= '0';
+
+    with i_ALUOP select
+        s_add_sub <= '1' when "1000" | "0110", --sets sub bit to 1 when sub or subu
+                     '0' when others;
+
+    with i_ALUOP select
+        s_shift_dir <=  '1' when "1001", --shift left
+                        '0' when others;
+
+    with i_ALUOP select
+        s_shift_type <= '1' when "1011",
+                        '0' when others;
 
     and32: and_32bit 
     port map(
@@ -174,25 +187,10 @@ end component;
     s_slt(31 downto 1) <= (others => '0');
     
 
-    o_C_out <= '0';
-
-    with i_ALUOP select
-        s_add_sub <= '1' when "1000" | "0110", --sets sub bit to 1 when sub or subu
-                     '0' when others;
-
-    with i_ALUOP select
-        s_shift_dir <=  '1' when "1001", --shift left
-                        '0' when others;
-
-    with i_ALUOP select
-        s_shift_type <= '1' when "1011",
-                        '0' when others;
-    
-
 
 -- 0010 add/addi *
--- 0011 addu
--- 0100 addiu
+-- 0011 addu/addiu
+-- 0100 
 -- 0101 xor
 -- 0110 sub *
 -- 0111 slt *
@@ -207,7 +205,7 @@ end component;
     with i_ALUOP select
         s_out <= s_and when "0000",--and
                  s_or when "0001", -- or
-                 s_adder when "0010" | "0011" | "0100" | "0110" | "1000", --add/addi, addu, addiu, sub, subu
+                 s_adder when "0010" | "0011" | "0110" | "1000", --add/addi, addu/addiu, sub, subu
                  s_xor when "0101", --xor
                  s_slt when "0111", --slt
                  s_shifter when "1001" | "1010" | "1011", --sll, srl, sra
@@ -217,7 +215,7 @@ end component;
 
     
     with i_ALUOP select 
-        o_OVERFLOW <= '0' when "0011" | "0100"| "1000", --addu, addiu, subu
+        s_overflow <= '0' when "0011" | "1000", --addu/addiu, subu
                        s_overflow when others;
     
 

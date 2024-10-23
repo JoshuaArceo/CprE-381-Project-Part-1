@@ -7,6 +7,7 @@ entity ripple_adder_N is
 	     i_B	: in std_logic_vector(N-1 downto 0);
 	     i_Cin	: in std_logic;
 	     o_S	: out std_logic_vector(N-1 downto 0);
+		 o_OFCIN: out std_logic;
 	     o_Cout	: out std_logic);
 end ripple_adder_N;
 
@@ -35,6 +36,8 @@ G_NBit_Adders: for i in 0 to N-1 generate
 		o_S	=>o_S(i),
 		o_Cout	=>s_Cin(i+1));
 end generate G_NBit_Adders;
+
+o_OFCIN <= s_Cin(N-1);
 
 o_Cout <= s_Cin(N);
 

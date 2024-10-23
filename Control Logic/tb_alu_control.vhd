@@ -30,48 +30,48 @@ begin
   begin
 
     -- Test R type
-    s_s_type              <= "000000";  -- expect: 00000
+    s_s_type              <= "000000";  -- expect: 0000
     s_opcode              <= "000000";
     wait for 100 ns;
 
-    s_s_type              <= "000010";  -- expect: 00001
+    s_s_type              <= "000010";  -- expect: 0001
     s_opcode              <= "000000";
     wait for 100 ns;
 
-    s_s_type              <= "100100";  -- expect: 00101
+    s_s_type              <= "100100";  -- expect: 0101
     s_opcode              <= "000000";
     wait for 100 ns;
 
-    s_s_type              <= "100111";  -- expect: 00111
+    s_s_type              <= "100111";  -- expect: 0111
     s_opcode              <= "000000";
     wait for 100 ns;
     -- end R type
 
-    s_s_type              <= "000000";  -- expect: 01101
+    s_s_type              <= "000000";  -- expect: 1101
     s_opcode              <= "000100";
     wait for 100 ns;
 
-    s_s_type              <= "000000";  -- expect: 01111
+    s_s_type              <= "000000";  -- expect: 1111
     s_opcode              <= "001000";
     wait for 100 ns;
 
-    s_s_type              <= "000000";  -- expect: 10011
+    s_s_type              <= "000000";  -- expect: 0011
     s_opcode              <= "001101";
     wait for 100 ns;
 
-    s_s_type              <= "000000";  -- expect: 10101
+    s_s_type              <= "000000";  -- expect: 0101
     s_opcode              <= "001111";
     wait for 100 ns;
 
-    s_s_type              <= "000000";  -- expect: 10110
+    s_s_type              <= "000000";  -- expect: 0110
     s_opcode              <= "100011";
     wait for 100 ns;
 
-    s_s_type              <= "000000";  -- expect: 10111
+    s_s_type              <= "000000";  -- expect: 0111
     s_opcode              <= "101011";
     wait for 100 ns;
 
-    s_s_type              <= "000000";  -- expect: 11111
+    s_s_type              <= "000000";  -- expect: 1111
     s_opcode              <= "111111";
     wait for 100 ns;
 

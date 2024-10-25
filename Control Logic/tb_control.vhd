@@ -20,7 +20,8 @@ architecture behavior of tb_control is
         Jump       : out std_logic;
         Branch     : out std_logic;
         s_Halt     : out std_logic;
-        RegDst     : out std_logic
+        RegDst     : out std_logic;
+        signExt    : out std_logic
     );
     end component;
 
@@ -37,6 +38,7 @@ architecture behavior of tb_control is
     signal Branch     : std_logic;
     signal s_Halt     : std_logic;
     signal RegDst     : std_logic;
+    signal signExt    : std_logic;
 
 begin
     uut: control port map (
@@ -52,7 +54,8 @@ begin
         Jump       => Jump,
         Branch     => Branch,
         s_Halt     => s_Halt,
-        RegDst     => RegDst
+        RegDst     => RegDst,
+        signExt    => signExt
     );
 
     stim_proc: process

@@ -14,7 +14,9 @@ port( readIn       :   in std_logic_vector(5 downto 0); --bits 31-26 opcode
 	  Jump	       :   out std_logic;
 	  Branch	   :   out std_logic;
 	  s_Halt	   :   out std_logic;
-      RegDst       :   out std_logic); --uses rt as destination register rather than rd
+      RegDst       :   out std_logic;  --uses rt as destination register rather than rd
+	  signExt	   :   out std_logic 
+	  );
 
 end control;
 
@@ -38,6 +40,7 @@ P1: process(readIn)
 		Jump <= '1';
 		Branch <= '0';
 		s_Halt <= '0';
+		signExt <= '0';
 	else --other
 		ALUControl <= readIn(5 downto 0);
 		ALUSrc <= '0';
@@ -50,6 +53,7 @@ P1: process(readIn)
 		Jump <= '0';
 		Branch <= '0';
 		s_Halt <= '0';
+		signExt <= '0';
 	end if;
     
     elsif (readIn = "001000") then --addi 
@@ -64,6 +68,7 @@ P1: process(readIn)
 	Jump <= '0';
 	Branch <= '0';
 	s_Halt <= '0';
+	signExt <= '1';
     
     elsif (readIn = "001001") then --addiu 
 	ALUControl <= readIn(5 downto 0);
@@ -77,6 +82,7 @@ P1: process(readIn)
 	Jump <= '0';
 	Branch <= '0';
 	s_Halt <= '0';
+	signExt <= '1';
     
     elsif (readIn = "101011") then --sw
 	ALUControl <= readIn(5 downto 0);
@@ -90,6 +96,7 @@ P1: process(readIn)
 	Jump <= '0';
 	Branch <= '0';
 	s_Halt <= '0';
+	signExt <= '0';
     
     elsif (readIn = "001100") then --andi 
 	ALUControl <= readIn(5 downto 0);
@@ -103,6 +110,7 @@ P1: process(readIn)
 	Jump <= '0';
 	Branch <= '0';
 	s_Halt <= '0';
+	signExt <= '0';
     
 elsif (readIn = "001111") then --lui 
 	ALUControl <= readIn(5 downto 0);
@@ -116,6 +124,7 @@ elsif (readIn = "001111") then --lui
 	Jump <= '0';
 	Branch <= '0';
 	s_Halt <= '0';
+	signExt <= '0';
     
 elsif (readIn = "100011") then --lw 
 	ALUControl <= readIn(5 downto 0);
@@ -129,6 +138,7 @@ elsif (readIn = "100011") then --lw
 	Jump <= '0';
 	Branch <= '0';
 	s_Halt <= '0';
+	signExt <= '0';
     
 elsif (readIn = "001110") then --xori 
 	ALUControl <= readIn(5 downto 0);
@@ -142,7 +152,8 @@ elsif (readIn = "001110") then --xori
 	Jump <= '0';
 	Branch <= '0';
 	s_Halt <= '0';
-   
+	signExt <= '0';
+
 elsif (readIn = "001101") then --ori 
 	ALUControl <= readIn(5 downto 0);
 	ALUSrc <= '1';
@@ -155,6 +166,7 @@ elsif (readIn = "001101") then --ori
 	Jump <= '0';
 	Branch <= '0';
 	s_Halt <= '0';
+	signExt <= '0';
     
 elsif (readIn = "001010") then --slti 
 	ALUControl <= readIn(5 downto 0);
@@ -168,6 +180,7 @@ elsif (readIn = "001010") then --slti
 	Jump <= '0';
 	Branch <= '0';
 	s_Halt <= '0';
+	signExt <= '0';
     
 elsif (readIn = "000100") then --beq 
 	ALUControl <= readIn(5 downto 0);
@@ -181,6 +194,7 @@ elsif (readIn = "000100") then --beq
 	Jump <= '0';
 	Branch <= '1';
 	s_Halt <= '0';
+	signExt <= '0';
     
 elsif (readIn = "000101") then --bne 
 	ALUControl <= readIn(5 downto 0);
@@ -194,6 +208,7 @@ elsif (readIn = "000101") then --bne
 	Jump <= '0';
 	Branch <= '1';
 	s_Halt <= '0';
+	signExt <= '0';
     
 elsif (readIn = "000010") then --j 
 	ALUControl <= readIn(5 downto 0);
@@ -207,6 +222,7 @@ elsif (readIn = "000010") then --j
 	Jump <= '1';
 	Branch <= '1';
 	s_Halt <= '0';
+	signExt <= '0';
 
 elsif (readIn = "000011") then --jal 
 	ALUControl <= readIn(5 downto 0);
@@ -220,6 +236,8 @@ elsif (readIn = "000011") then --jal
 	Jump <= '1';
 	Branch <= '0';
 	s_Halt <= '0';
+	signExt <= '0';
+
 elsif (readIn = "010100") then --halt(stops)
 	ALUControl <= readIn(5 downto 0);
 	ALUSrc <= '0';
@@ -232,6 +250,7 @@ elsif (readIn = "010100") then --halt(stops)
 	Jump <= '0';
 	Branch <= '0';
 	s_Halt <= '1';
+	signExt <= '0';
 
 end if;
 

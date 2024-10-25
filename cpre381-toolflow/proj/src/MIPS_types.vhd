@@ -16,7 +16,9 @@ package MIPS_types is
 
   -- Example Constants. Declare more as needed
   constant DATA_WIDTH : integer := 32;
-  constant ADDR_WIDTH : integer := 5;
+  constant ADDR_WIDTH : integer := 10;
+
+  constnat REG_ADDR_WIDTH : integer := 5;
 
   -- Example record type. Declare whatever types you need here
   type control_t is record

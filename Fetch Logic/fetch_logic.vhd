@@ -21,6 +21,7 @@ END fetch_logic;
 ARCHITECTURE structural OF fetch_logic is
 
     COMPONENT mux2t1_N is
+        generic(N: integer := 32)
         PORT (
             i_S  : in std_logic;
             i_D0 : in std_logic_vector(N - 1 DOWNTO 0);

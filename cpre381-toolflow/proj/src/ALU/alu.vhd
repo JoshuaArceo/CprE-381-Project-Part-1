@@ -105,7 +105,7 @@ end component;
     end component;
     
     signal s_adder, s_shifter, s_and, s_or, s_xor, s_out, s_slt, s_repl, s_nor, s_shift_me : std_logic_vector(31 downto 0);
-    signal s_add_sub, s_cout, s_overflow, s_zero, s_shift_dir, s_shift_type : std_logic;
+    signal s_add_sub, s_cout, s_overflow, s_out_overflow, s_zero, s_shift_dir, s_shift_type : std_logic;
     signal s_shamt  : std_logic_vector(4 downto 0);
 
     begin 
@@ -224,7 +224,7 @@ end component;
 
     
     with i_ALUCTRL select 
-        s_overflow <= '0' when "0011" | "1000", --addu/addiu, subu
+    s_out_overflow <= '0' when "0011" | "1000", --addu/addiu, subu
                        s_overflow when others;
     
 
@@ -236,7 +236,7 @@ end component;
 
     o_F <= s_out;
     o_C_OUT <= s_cout;
-    o_OVERFLOW  <= s_overflow;
+    o_OVERFLOW  <= s_out_overflow;
     o_ZERO  <= s_zero;
 
 

@@ -62,7 +62,7 @@ architecture structure of MIPS_Processor is
   signal s_inst_opcode, s_inst_func    :std_logic_vector(5 downto 0);
   signal s_inst_addr_RS, s_inst_Addr_RT, s_inst_Addr_RD, s_inst_shamt: std_logic_vector((REG_ADDR_WIDTH -1) downto 0);
   signal s_inst_jumpAddr: std_logic_vector(25 downto 0);
-  signal s_instImm      : std_logic_vector((16-1) downto 0);
+  signal s_inst_imm      : std_logic_vector((16-1) downto 0);
 
   signal s_ImmExt       : std_logic_vector((DATA_WIDTH - 1) downto 0);
 
@@ -100,7 +100,7 @@ architecture structure of MIPS_Processor is
   --       requires below this comment
 
     component fetch_logic is
-      generic(DATA_WIDTH : integer);
+      generic(N : integer);
       PORT (
         i_PC              : in std_logic_vector(N - 1 downto 0); 
         i_JAddr           : in std_logic_vector(25 downto 0);
@@ -134,11 +134,12 @@ architecture structure of MIPS_Processor is
     end component;
 
     component mux2t1_N is
-      generic(DATA_WIDTH : integer);
-      port(i_S          : in std_logic;
-       i_D0         : in std_logic_vector((DATA_WIDTH - 1) downto 0);
-       i_D1         : in std_logic_vector((DATA_WIDTH - 1) downto 0);
-       o_O          : out std_logic_vector((DATA_WIDTH - 1) downto 0));
+      generic(N : integer);
+      port(
+       i_S          : in std_logic;
+       i_D0         : in std_logic_vector((N - 1) downto 0);
+       i_D1         : in std_logic_vector((N - 1) downto 0);
+       o_O          : out std_logic_vector((N - 1) downto 0));
       end component;
 
   component shifter is
@@ -171,7 +172,7 @@ architecture structure of MIPS_Processor is
      port (
           i_OP_A      : in    std_logic_vector((DATA_WIDTH - 1) downto 0);
           i_OP_B      : in    std_logic_vector((DATA_WIDTH - 1) downto 0);
-          i_ALUOP     : in    std_logic_vector(3 downto 0); -- 4 bit to support 13 functions
+          i_ALUCTRL     : in    std_logic_vector(3 downto 0); -- 4 bit to support 13 functions
           o_F         : out   std_logic_vector((DATA_WIDTH - 1) downto 0);
           o_C_OUT     : out   std_logic;
           o_OVERFLOW  : out   std_logic;
@@ -240,17 +241,20 @@ architecture structure of MIPS_Processor is
   -- TODO: Ensure that s_Ovfl is connected to the overflow output of your ALU
 
   -- TODO: Implement the rest of your processor below this comment! 
-    
+  
+
     s_inst_opcode  <= s_Inst(31 downto 26);
     s_inst_addr_RS <= s_Inst(25 downto 21);
     s_inst_addr_RT <= s_Inst(20 downto 16);
     s_inst_addr_RD <= s_Inst(15 downto 11);
     s_inst_shamt   <= s_Inst(10 downto 6);
-    s_inst_func     <= s_Inst(5 downto 0);
+    s_inst_func    <= s_Inst(5 downto 0);
+    s_inst_imm     <= s_Inst(15 downto 0);
+    s_inst_jumpAddr<= s_Inst(25 downto 0);
 
 
     muxRegWrite0: mux2t1_N
-    generic map(DATA_WIDTH => N)
+    generic map(N => REG_ADDR_WIDTH)
     port map(
       i_S => s_RegDst,
       i_D0 => s_inst_addr_RT,
@@ -259,7 +263,7 @@ architecture structure of MIPS_Processor is
     );
 
     muxRegWrite1: mux2t1_N
-    generic map(DATA_WIDTH => N)
+    generic map(N => REG_ADDR_WIDTH)
     port map(
       i_S => s_RegDst,
       i_D0 => s_regDstMux,
@@ -268,8 +272,9 @@ architecture structure of MIPS_Processor is
     );
 
     regFile0: regfile
-    generic map(ADDR_WIDTH => ADDR_WIDTH,
-        DATA_WIDTH => N
+    generic map(
+      ADDR_WIDTH => REG_ADDR_WIDTH,
+      DATA_WIDTH => N
     )
     port map(
       i_rA => s_inst_addr_RS,
@@ -306,13 +311,13 @@ architecture structure of MIPS_Processor is
 
     signExt: extend16t32
     port map(
-        i_data   => s_instImm,
+        i_data   => s_inst_imm,
         i_signed => s_signExt,
         o_data   => s_ImmExt
     );
 
     fetch: fetch_logic
-    generic map(DATA_WIDTH => N)
+    generic map(N => N)
     port map(
       i_PC => s_IMemAddr,
       i_JAddr => s_inst_jumpAddr,
@@ -328,7 +333,7 @@ architecture structure of MIPS_Processor is
     );
 
     ALUSrc: mux2t1_N
-    generic map(DATA_WIDTH => N)
+    generic map(N => N)
     port map(
       i_S => s_ALUSrc,
       i_D0 => s_Reg_B,
@@ -347,7 +352,7 @@ architecture structure of MIPS_Processor is
     port map(
       i_OP_A => s_Reg_A,
       i_OP_B => s_ALU_B_In,
-      i_ALUOP => s_ALUOP,
+      i_ALUCTRL => s_ALUOP,
       o_F => s_ALU_Out,
       o_C_OUT => s_ALU_COUT,
       o_OVERFLOW => s_ALU_Overflow,
@@ -357,7 +362,7 @@ architecture structure of MIPS_Processor is
     s_DMemAddr <= s_ALU_Out;
 
     wbDataMux: mux2t1_N
-    generic map(DATA_WIDTH => N)
+    generic map(N => N)
     port map(
       i_S => s_MemtoReg,
       i_D0 => s_ALU_Out,
@@ -366,7 +371,7 @@ architecture structure of MIPS_Processor is
     );
 
     wbJALMux : mux2t1_N
-    generic map(DATA_WIDTH => N)
+    generic map(N => N)
     port map(
       i_S => s_JAL,
       i_D0 => s_wb_Data,

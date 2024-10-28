@@ -7,11 +7,11 @@ use IEEE.std_logic_1164.all;
 entity shifter is 
     generic(N : integer := 32);
     port(
-        i_D     : in    std_logic_vector(N-1 downto 0);
-        i_AMT     : in    std_logic_vector(4 downto 0);
-        i_DIR   : in    std_logic; -- 1 left , 0 right
-        i_ARITH   : in    std_logic; -- 0 logical, 1 arithmetic
-        o_Q     : out   std_logic_vector(N-1 downto 0)
+        i_D         : in    std_logic_vector(N-1 downto 0);
+        i_AMT       : in    std_logic_vector(4 downto 0);
+        i_DIR       : in    std_logic; -- 1 left , 0 right
+        i_ARITH     : in    std_logic;  -- 0 logical, 1 arithmetic
+        o_Q         : out   std_logic_vector(N-1 downto 0)
     );
 
 end shifter;

@@ -2,16 +2,19 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity regfile is 
+generic(
+        ADDR_WIDTH : integer := 5;
+        DATA_WIDTH : integer := 32);
     port(
-        i_rA    : in    std_logic_vector(4 downto 0); -- 5 bit register address source
-        i_rB    : in    std_logic_vector(4 downto 0); -- 5 bit register address target
-        i_rW    : in    std_logic_vector(4 downto 0); -- 5 bit register address destination
+        i_rA    : in    std_logic_vector((ADDR_WIDTH-1) downto 0); -- 5 bit register address source
+        i_rB    : in    std_logic_vector((ADDR_WIDTH-1) downto 0); -- 5 bit register address target
+        i_rW    : in    std_logic_vector((ADDR_WIDTH-1) downto 0); -- 5 bit register address destination
         i_WE    : in    std_logic;
-        i_D     : in    std_logic_vector(31 downto 0);
+        i_D     : in    std_logic_vector((DATA_WIDTH-1) downto 0);
         i_CLK   : in    std_logic;
         i_RST   : in    std_logic;
-        o_ReadA : out   std_logic_vector(31 downto 0);
-        o_ReadB : out   std_logic_vector(31 downto 0)
+        o_ReadA : out   std_logic_vector((DATA_WIDTH-1) downto 0);
+        o_ReadB : out   std_logic_vector((DATA_WIDTH-1) downto 0)
     );
 end regfile;
 
@@ -35,40 +38,40 @@ architecture structural of regfile is
 
     component mux32t1_32
         port(
-        i_Reg0  : in std_logic_vector(31 downto 0);
-        i_Reg1  : in std_logic_vector(31 downto 0);
-        i_Reg2  : in std_logic_vector(31 downto 0);
-        i_Reg3  : in std_logic_vector(31 downto 0);
-        i_Reg4  : in std_logic_vector(31 downto 0);
-        i_Reg5  : in std_logic_vector(31 downto 0);
-        i_Reg6  : in std_logic_vector(31 downto 0);
-        i_Reg7  : in std_logic_vector(31 downto 0);
-        i_Reg8  : in std_logic_vector(31 downto 0);
-        i_Reg9  : in std_logic_vector(31 downto 0);
-        i_Reg10 : in std_logic_vector(31 downto 0);
-        i_Reg11 : in std_logic_vector(31 downto 0);
-        i_Reg12 : in std_logic_vector(31 downto 0);
-        i_Reg13 : in std_logic_vector(31 downto 0);
-        i_Reg14 : in std_logic_vector(31 downto 0);
-        i_Reg15 : in std_logic_vector(31 downto 0);
-        i_Reg16 : in std_logic_vector(31 downto 0);
-        i_Reg17 : in std_logic_vector(31 downto 0);
-        i_Reg18 : in std_logic_vector(31 downto 0);
-        i_Reg19 : in std_logic_vector(31 downto 0);
-        i_Reg20 : in std_logic_vector(31 downto 0);
-        i_Reg21 : in std_logic_vector(31 downto 0);
-        i_Reg22 : in std_logic_vector(31 downto 0);
-        i_Reg23 : in std_logic_vector(31 downto 0);
-        i_Reg24 : in std_logic_vector(31 downto 0);
-        i_Reg25 : in std_logic_vector(31 downto 0);
-        i_Reg26 : in std_logic_vector(31 downto 0);
-        i_Reg27 : in std_logic_vector(31 downto 0);
-        i_Reg28 : in std_logic_vector(31 downto 0);
-        i_Reg29 : in std_logic_vector(31 downto 0);
-        i_Reg30 : in std_logic_vector(31 downto 0);
-        i_Reg31 : in std_logic_vector(31 downto 0);
-        i_Sel    : in std_logic_vector(4 downto 0);
-        o_Reg   : out std_logic_vector(31 downto 0)
+        i_Reg0  : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg1  : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg2  : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg3  : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg4  : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg5  : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg6  : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg7  : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg8  : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg9  : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg10 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg11 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg12 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg13 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg14 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg15 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg16 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg17 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg18 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg19 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg20 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg21 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg22 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg23 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg24 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg25 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg26 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg27 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg28 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg29 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg30 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Reg31 : in std_logic_vector((DATA_WIDTH-1) downto 0);
+        i_Sel    : in std_logic_vector((ADDR_WIDTH-1) downto 0);
+        o_Reg   : out std_logic_vector((DATA_WIDTH-1) downto 0)
         );
     end component;
 

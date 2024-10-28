@@ -52,7 +52,7 @@ end component;
 signal s_Cin : std_logic;
 signal s_Mux : std_logic_vector(N-1 downto 0);
 signal s_iBInv: std_logic_vector(N-1 downto 0);
-
+signal s_oCout: std_logic;
 signal s_OFCin :std_logic;
 
 
@@ -78,15 +78,15 @@ s_Cin <= i_nAdd_Sub;
 		i_Cin	=> s_Cin,
 		o_S	=>o_S,
 		o_OFCIN => s_OFCin,
-		o_Cout	=>o_Cout);
+		o_Cout	=>s_oCout);
 
-	
+	o_Cout <= s_oCout;
 -- end generate G_NBit_Add_Subs;
 
 ofXOR: xorg2
 port map(
 	i_A => s_OFCin,
-	i_B => o_Cout,
+	i_B => s_oCout,
 	o_F => o_OF
 );
 

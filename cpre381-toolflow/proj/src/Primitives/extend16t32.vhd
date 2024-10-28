@@ -11,7 +11,7 @@ end extend16t32;
 
 architecture dataflow of extend16t32 is
 begin
-    process(i_signed, o_data, i_data)
+    process(i_signed, i_data)
     begin
         if i_signed = '1' then
             o_data(31 downto 16) <= (others => i_data(15));

@@ -67,9 +67,16 @@ architecture structural of fetch_logic is
         );
     end component;
 
+    component invg is
+        port(
+            i_A : in std_logic;
+            o_F : out std_logic
+        );
+    end component;
+
 
     signal s_PC4, s_shifted_imm, s_branch_addr, s_jumpAddr, s_branchOut, s_jrOut : std_logic_vector(N-1 downto 0); 
-    signal s_outSelect, s_BranchSelect, s_BranchZero, s_BNEZero  : std_logic;
+    signal s_outSelect, s_BranchSelect, s_BranchZero, s_BNEZero, s_not_ALU_Zero  : std_logic;
 
 begin
 
@@ -108,10 +115,16 @@ begin
         o_F => s_BranchZero
     );
 
+    notALU_Zero : invg
+    port map(
+        i_A => i_ALU_Zero,
+        o_F => s_not_ALU_Zero
+    );
+
     bneAnd : andg2
         port map(
         i_A => i_BNE,
-        i_B => not i_ALU_Zero,
+        i_B => s_not_ALU_Zero,
         o_F => s_BNEZero
     );
     

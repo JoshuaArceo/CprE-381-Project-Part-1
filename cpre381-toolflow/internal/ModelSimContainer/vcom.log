@@ -1,6 +1,6 @@
 QuestaSim-64 vcom 2024.2 Compiler 2024.05 May 20 2024
-Start time: 14:01:18 on Oct 28,2024
-vcom -2008 -work internal/ModelSimContainer/work proj/src/MIPS_types.vhd internal/testpy/tb.vhd proj/src/MIPS_types.vhd proj/src/32-Bit/xor_32bit.vhd proj/src/32-Bit/bus_6digit.vhd proj/src/32-Bit/invg.vhd proj/src/32-Bit/or_32bit.vhd proj/src/32-Bit/andg2.vhd proj/src/32-Bit/org2.vhd proj/src/32-Bit/xorg2.vhd proj/src/32-Bit/nor_32bit.vhd proj/src/32-Bit/and_32bit.vhd proj/src/Barrel_Shifter/shifter.vhd proj/src/TopLevel/MIPS_Processor.vhd proj/src/TopLevel/mem.vhd proj/src/Primitives/xorg2.vhd proj/src/Primitives/ripple_adder_N.vhd proj/src/Primitives/reg_N.vhd proj/src/Primitives/extend16t32.vhd proj/src/Primitives/invg.vhd proj/src/Primitives/mux2t1_df.vhd proj/src/Primitives/decoder_5t32.vhd proj/src/Primitives/regfile.vhd proj/src/Primitives/org2.vhd proj/src/Primitives/Adder.vhd proj/src/Primitives/add_sub_N.vhd proj/src/Primitives/onescomp_N.vhd proj/src/Primitives/full_adder.vhd proj/src/Primitives/mux2t1_N.vhd proj/src/Primitives/mux32t1_32.vhd proj/src/Primitives/andg2.vhd proj/src/Fetch Logic/andg2.vhd proj/src/Fetch Logic/mux2t1.vhd proj/src/Fetch Logic/org2.vhd proj/src/Fetch Logic/xorg2.vhd proj/src/Fetch Logic/fetch_logic.vhd proj/src/Fetch Logic/invg.vhd proj/src/ALU/ALUcontrol.vhd proj/src/ALU/replicator.vhd proj/src/ALU/alu.vhd proj/src/Control Logic/control.vhd 
+Start time: 16:09:53 on Oct 28,2024
+vcom -2008 -work internal/ModelSimContainer/work proj/src/MIPS_types.vhd internal/testpy/tb.vhd proj/src/MIPS_types.vhd proj/src/32-Bit/xor_32bit.vhd proj/src/32-Bit/bus_6digit.vhd proj/src/32-Bit/invg.vhd proj/src/32-Bit/or_32bit.vhd proj/src/32-Bit/andg2.vhd proj/src/32-Bit/org2.vhd proj/src/32-Bit/xorg2.vhd proj/src/32-Bit/nor_32bit.vhd proj/src/32-Bit/and_32bit.vhd proj/src/Barrel_Shifter/shifter.vhd proj/src/TopLevel/MIPS_Processor.vhd proj/src/TopLevel/mem.vhd proj/src/Primitives/xorg2.vhd proj/src/Primitives/pc_dffg.vhd proj/src/Primitives/ripple_adder_N.vhd proj/src/Primitives/reg_N.vhd proj/src/Primitives/extend16t32.vhd proj/src/Primitives/invg.vhd proj/src/Primitives/mux2t1_df.vhd proj/src/Primitives/decoder_5t32.vhd proj/src/Primitives/regfile.vhd proj/src/Primitives/dffg.vhd proj/src/Primitives/org2.vhd proj/src/Primitives/Adder.vhd proj/src/Primitives/add_sub_N.vhd proj/src/Primitives/pc_reg.vhd proj/src/Primitives/onescomp_N.vhd proj/src/Primitives/full_adder.vhd proj/src/Primitives/mux2t1_N.vhd proj/src/Primitives/mux32t1_32.vhd proj/src/Primitives/andg2.vhd proj/src/Fetch Logic/mux2t1.vhd proj/src/Fetch Logic/fetch_logic.vhd proj/src/ALU/ALUcontrol.vhd proj/src/ALU/replicator.vhd proj/src/ALU/alu.vhd proj/src/Control Logic/control.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
@@ -19,23 +19,23 @@ vcom -2008 -work internal/ModelSimContainer/work proj/src/MIPS_types.vhd interna
 -- Compiling entity xor_32bit
 -- Compiling architecture dataflow of xor_32bit
 -- Compiling package bus_6digit
-** Warning: proj/src/32-Bit/invg.vhd(4): (vcom-1615) Existing entity 'invg' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/invg.vhd(23) will be overwritten.
+** Warning: proj/src/32-Bit/invg.vhd(4): (vcom-1615) Existing entity 'invg' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/invg.vhd(23) will be overwritten.
 -- Compiling entity invg
-** Warning: proj/src/32-Bit/invg.vhd(11): (vcom-1615) Existing architecture 'invg(dataflow)' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/invg.vhd(30) will be overwritten.
+** Warning: proj/src/32-Bit/invg.vhd(11): (vcom-1615) Existing architecture 'invg(dataflow)' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/invg.vhd(30) will be overwritten.
 -- Compiling architecture dataflow of invg
 -- Compiling entity or_32bit
 -- Compiling architecture dataflow of or_32bit
-** Warning: proj/src/32-Bit/andg2.vhd(4): (vcom-1615) Existing entity 'andg2' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/andg2.vhd(23) will be overwritten.
+** Warning: proj/src/32-Bit/andg2.vhd(4): (vcom-1615) Existing entity 'andg2' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/andg2.vhd(23) will be overwritten.
 -- Compiling entity andg2
-** Warning: proj/src/32-Bit/andg2.vhd(13): (vcom-1615) Existing architecture 'andg2(dataflow)' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/andg2.vhd(31) will be overwritten.
+** Warning: proj/src/32-Bit/andg2.vhd(13): (vcom-1615) Existing architecture 'andg2(dataflow)' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/andg2.vhd(31) will be overwritten.
 -- Compiling architecture dataflow of andg2
-** Warning: proj/src/32-Bit/org2.vhd(4): (vcom-1615) Existing entity 'org2' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/org2.vhd(23) will be overwritten.
+** Warning: proj/src/32-Bit/org2.vhd(4): (vcom-1615) Existing entity 'org2' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/org2.vhd(23) will be overwritten.
 -- Compiling entity org2
-** Warning: proj/src/32-Bit/org2.vhd(13): (vcom-1615) Existing architecture 'org2(dataflow)' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/org2.vhd(31) will be overwritten.
+** Warning: proj/src/32-Bit/org2.vhd(13): (vcom-1615) Existing architecture 'org2(dataflow)' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/org2.vhd(31) will be overwritten.
 -- Compiling architecture dataflow of org2
-** Warning: proj/src/32-Bit/xorg2.vhd(4): (vcom-1615) Existing entity 'xorg2' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/xorg2.vhd(23) will be overwritten.
+** Warning: proj/src/32-Bit/xorg2.vhd(4): (vcom-1615) Existing entity 'xorg2' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/xorg2.vhd(23) will be overwritten.
 -- Compiling entity xorg2
-** Warning: proj/src/32-Bit/xorg2.vhd(12): (vcom-1615) Existing architecture 'xorg2(dataflow)' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/xorg2.vhd(31) will be overwritten.
+** Warning: proj/src/32-Bit/xorg2.vhd(12): (vcom-1615) Existing architecture 'xorg2(dataflow)' at /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/xorg2.vhd(31) will be overwritten.
 -- Compiling architecture dataflow of xorg2
 -- Compiling entity nor_32bit
 -- Compiling architecture dataflow of nor_32bit
@@ -47,7 +47,7 @@ vcom -2008 -work internal/ModelSimContainer/work proj/src/MIPS_types.vhd interna
 -- Loading package MIPS_types
 -- Compiling entity MIPS_Processor
 -- Compiling architecture structure of MIPS_Processor
-** Warning: proj/src/TopLevel/MIPS_Processor.vhd(291): (vcom-1624) Component instance MIPS_Processor(structure).control0 has a generic map clause and the component control has no generics.
+** Warning: proj/src/TopLevel/MIPS_Processor.vhd(327): (vcom-1624) Component instance MIPS_Processor(structure).control0 has a generic map clause and the component control has no generics.
 Generic map will be ignored.
 -- Compiling entity mem
 -- Compiling architecture rtl of mem
@@ -55,6 +55,8 @@ Generic map will be ignored.
 -- Compiling entity xorg2
 ** Warning: proj/src/Primitives/xorg2.vhd(31): (vcom-1615) Existing architecture 'xorg2(dataflow)' at proj/src/32-Bit/xorg2.vhd(12) will be overwritten.
 -- Compiling architecture dataflow of xorg2
+-- Compiling entity pc_dffg
+-- Compiling architecture mixed of pc_dffg
 -- Compiling entity ripple_adder_N
 -- Compiling architecture structure of ripple_adder_N
 -- Compiling entity reg_N
@@ -71,6 +73,8 @@ Generic map will be ignored.
 -- Compiling architecture dataflow of decoder_5t32
 -- Compiling entity regfile
 -- Compiling architecture structural of regfile
+-- Compiling entity dffg
+-- Compiling architecture mixed of dffg
 ** Warning: proj/src/Primitives/org2.vhd(23): (vcom-1615) Existing entity 'org2' at proj/src/32-Bit/org2.vhd(4) will be overwritten.
 -- Compiling entity org2
 ** Warning: proj/src/Primitives/org2.vhd(31): (vcom-1615) Existing architecture 'org2(dataflow)' at proj/src/32-Bit/org2.vhd(13) will be overwritten.
@@ -79,6 +83,8 @@ Generic map will be ignored.
 -- Compiling architecture behavior of Adder
 -- Compiling entity add_sub_N
 -- Compiling architecture structure of add_sub_N
+-- Compiling entity pc_reg
+-- Compiling architecture structural of pc_reg
 -- Compiling entity onescomp_N
 -- Compiling architecture structural of onescomp_N
 -- Compiling entity full_adder
@@ -91,26 +97,10 @@ Generic map will be ignored.
 -- Compiling entity andg2
 ** Warning: proj/src/Primitives/andg2.vhd(31): (vcom-1615) Existing architecture 'andg2(dataflow)' at proj/src/32-Bit/andg2.vhd(13) will be overwritten.
 -- Compiling architecture dataflow of andg2
-** Warning: proj/src/Fetch Logic/andg2.vhd(23): (vcom-1615) Existing entity 'andg2' at proj/src/Primitives/andg2.vhd(23) will be overwritten.
--- Compiling entity andg2
-** Warning: proj/src/Fetch Logic/andg2.vhd(31): (vcom-1615) Existing architecture 'andg2(dataflow)' at proj/src/Primitives/andg2.vhd(31) will be overwritten.
--- Compiling architecture dataflow of andg2
 -- Compiling entity mux2t1
 -- Compiling architecture structure of mux2t1
-** Warning: proj/src/Fetch Logic/org2.vhd(23): (vcom-1615) Existing entity 'org2' at proj/src/Primitives/org2.vhd(23) will be overwritten.
--- Compiling entity org2
-** Warning: proj/src/Fetch Logic/org2.vhd(31): (vcom-1615) Existing architecture 'org2(dataflow)' at proj/src/Primitives/org2.vhd(31) will be overwritten.
--- Compiling architecture dataflow of org2
-** Warning: proj/src/Fetch Logic/xorg2.vhd(23): (vcom-1615) Existing entity 'xorg2' at proj/src/Primitives/xorg2.vhd(23) will be overwritten.
--- Compiling entity xorg2
-** Warning: proj/src/Fetch Logic/xorg2.vhd(31): (vcom-1615) Existing architecture 'xorg2(dataflow)' at proj/src/Primitives/xorg2.vhd(31) will be overwritten.
--- Compiling architecture dataflow of xorg2
 -- Compiling entity fetch_logic
 -- Compiling architecture structural of fetch_logic
-** Warning: proj/src/Fetch Logic/invg.vhd(23): (vcom-1615) Existing entity 'invg' at proj/src/Primitives/invg.vhd(23) will be overwritten.
--- Compiling entity invg
-** Warning: proj/src/Fetch Logic/invg.vhd(30): (vcom-1615) Existing architecture 'invg(dataflow)' at proj/src/Primitives/invg.vhd(30) will be overwritten.
--- Compiling architecture dataflow of invg
 -- Compiling entity ALUcontrol
 -- Compiling architecture structural of ALUcontrol
 -- Compiling entity replicator
@@ -119,5 +109,5 @@ Generic map will be ignored.
 -- Compiling architecture structural of alu
 -- Compiling entity control
 -- Compiling architecture behavioral of control
-End time: 14:01:18 on Oct 28,2024, Elapsed time: 0:00:00
-Errors: 0, Warnings: 27
+End time: 16:09:54 on Oct 28,2024, Elapsed time: 0:00:01
+Errors: 0, Warnings: 19

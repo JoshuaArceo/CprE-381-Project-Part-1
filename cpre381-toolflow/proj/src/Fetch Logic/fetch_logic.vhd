@@ -156,7 +156,7 @@ begin
         i_S => i_Jump,
         i_D0 => s_branchOut,
         i_D1 => s_jumpAddr,
-        o_O => o_PC4
+        o_O => o_PC
     );
 
 

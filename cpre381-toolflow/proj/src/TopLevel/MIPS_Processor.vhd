@@ -116,6 +116,17 @@ architecture structure of MIPS_Processor is
         );
       end component;
       
+      component pc_reg is
+        generic(N : integer);
+        port(
+          i_D	: in std_logic_vector(N-1 downto 0);
+          i_RST	: in std_logic;
+          i_CLK	: in std_logic;
+          i_WE	: in std_logic;
+          o_Q	: out std_logic_vector(N-1 downto 0)
+          );
+      end component;
+
       component regfile is 
       generic(
         ADDR_WIDTH : integer;
@@ -252,6 +263,31 @@ architecture structure of MIPS_Processor is
     s_inst_imm     <= s_Inst(15 downto 0);
     s_inst_jumpAddr<= s_Inst(25 downto 0);
 
+    pcreg: pc_reg
+    generic map(N => DATA_WIDTH)
+    port map(
+      i_D => s_NextInstAddr,
+      i_RST => iRST,
+      i_CLK => iCLK,
+      i_WE => '1',
+      o_Q => s_IMemAddr
+    );
+
+    fetch: fetch_logic
+    generic map(N => N)
+    port map(
+      i_PC => s_IMemAddr,
+      i_JAddr => s_inst_jumpAddr,
+      i_Imm => s_ImmExt,
+      i_RegA => s_Reg_A,
+      i_Branch => s_Branch,
+      i_ALU_Zero => s_ALU_Zero,
+      i_Jump => s_Jump,
+      i_JR => s_JR,
+      i_BNE => s_BNE,
+      o_PC4 => s_PC4,
+      o_PC => s_NextInstAddr
+    );
 
     muxRegWrite0: mux2t1_N
     generic map(N => REG_ADDR_WIDTH)
@@ -304,10 +340,13 @@ architecture structure of MIPS_Processor is
         o_Jump => s_Jump,
         o_Branch => s_Branch,
         o_BNE   => s_BNE,
-        o_Halt => s_Halt,
+        o_Halt => s_Halt, 
         o_RegDst => s_RegDst,
         o_signExt => s_signExt
     );
+
+  
+  
 
     signExt: extend16t32
     port map(
@@ -316,21 +355,7 @@ architecture structure of MIPS_Processor is
         o_data   => s_ImmExt
     );
 
-    fetch: fetch_logic
-    generic map(N => N)
-    port map(
-      i_PC => s_IMemAddr,
-      i_JAddr => s_inst_jumpAddr,
-      i_Imm => s_ImmExt,
-      i_RegA => s_Reg_A,
-      i_Branch => s_Branch,
-      i_ALU_Zero => s_ALU_Zero,
-      i_Jump => s_Jump,
-      i_JR => s_JR,
-      i_BNE => s_BNE,
-      o_PC4 => s_PC4,
-      o_PC => s_NextInstAddr
-    );
+    
 
     ALUSrc: mux2t1_N
     generic map(N => N)
@@ -358,6 +383,8 @@ architecture structure of MIPS_Processor is
       o_OVERFLOW => s_ALU_Overflow,
       o_ZERO => s_ALU_Zero
     );
+
+    oALUOut <= s_ALU_Out;
 
     s_DMemAddr <= s_ALU_Out;
 

@@ -118,7 +118,7 @@ P1: process(i_opcode)
 	o_DMemWr <= '1';
 
 	elsif (i_opcode = "010100") then --halt(stops)
-	o_Halt <= '1';
+	o_Halt <= '1'; --NEVER HALT
 
 end if;
 

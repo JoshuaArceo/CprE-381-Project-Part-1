@@ -2,20 +2,20 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity control is
-port( readIn       :   in std_logic_vector(5 downto 0); --bits 31-26 opcode
-      jrCode       :   in std_logic_vector(5 downto 0);
-      ALUControl   :   out std_logic_vector(5 downto 0); --0010 will perform add of A and B
-      ALUSrc       :   out std_logic; --use correcty extended immediate from B
-      MemtoReg     :   out std_logic; -- on 0 does not read from memory
-      jalSig       :   out std_logic;
-      jrSig        :   out std_logic;
-      s_DMemWr     :   out std_logic; --memwrite from text, on 0 does not write to memory
-      s_RegWr      :   out std_logic; --Regwrite from text, on 1 writes back to a register
-	  Jump	       :   out std_logic;
-	  Branch	   :   out std_logic;
-	  s_Halt	   :   out std_logic;
-      RegDst       :   out std_logic;  --uses rt as destination register rather than rd
-	  signExt	   :   out std_logic 
+port( i_opcode       :   in std_logic_vector(5 downto 0); --bits 31-26 opcode
+      i_func         :   in std_logic_vector(5 downto 0);
+      o_ALUSrc       :   out std_logic; --use correcty extended immediate from B
+      o_MemtoReg     :   out std_logic; -- on 0 does not read from memory
+      o_Jal          :   out std_logic;
+      o_JR           :   out std_logic;
+      o_DMemWr       :   out std_logic; --memwrite from text, on 0 does not write to memory
+      o_RegWr        :   out std_logic; --Regwrite from text, on 1 writes back to a register
+	  o_Jump	     :   out std_logic;
+	  o_Branch	     :   out std_logic;
+	  o_BNE			 :   out std_logic;
+	  o_Halt	     :   out std_logic;
+      o_RegDst       :   out std_logic;  --uses rt as destination register rather than rd
+	  o_SignExt	     :   out std_logic
 	  );
 
 end control;
@@ -25,232 +25,99 @@ architecture behavioral of control is
 begin
 
 
-P1: process(readIn) 
+P1: process(i_opcode) 
   begin
-    if (readIn = "000000") then --R type value 
-	if(jrCode = "001000") then --jr
-		ALUControl <= readIn(5 downto 0);
-		ALUSrc <= '0';
-		MemtoReg <= '0';
-		jalSig <= '0';
-		jrSig <= '1';
-		s_DMemWr <= '0';
-		s_RegWr <= '0';
-		RegDst <= '0';
-		Jump <= '1';
-		Branch <= '0';
-		s_Halt <= '0';
-		signExt <= '0';
-	else --other
-		ALUControl <= readIn(5 downto 0);
-		ALUSrc <= '0';
-		MemtoReg <= '0';
-		jalSig <= '0';
-		jrSig <= '0';
-		s_DMemWr <= '0';
-		s_RegWr <= '1';
-		RegDst <= '1';
-		Jump <= '0';
-		Branch <= '0';
-		s_Halt <= '0';
-		signExt <= '0';
-	end if;
-    
-    elsif (readIn = "001000") then --addi 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '1';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '0';
-	s_Halt <= '0';
-	signExt <= '1';
-    
-    elsif (readIn = "001001") then --addiu 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '1';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '0';
-	s_Halt <= '0';
-	signExt <= '1';
-    
-    elsif (readIn = "101011") then --sw
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '1';
-	s_RegWr <= '0';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '0';
-	s_Halt <= '0';
-	signExt <= '0';
-    
-    elsif (readIn = "001100") then --andi 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '1';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '0';
-	s_Halt <= '0';
-	signExt <= '0';
-    
-elsif (readIn = "001111") then --lui 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '1';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '0';
-	s_Halt <= '0';
-	signExt <= '0';
-    
-elsif (readIn = "100011") then --lw 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '1';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '1';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '0';
-	s_Halt <= '0';
-	signExt <= '0';
-    
-elsif (readIn = "001110") then --xori 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '1';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '0';
-	s_Halt <= '0';
-	signExt <= '0';
+	o_ALUSrc 	<= '0';
+	o_MemtoReg 	<= '0';
+	o_Jal 		<= '0';
+	o_JR 		<= '0';
+	o_DMemWr 	<= '0';
+	o_RegWr 	<= '0';
+	o_Jump 		<= '0';
+	o_Branch 	<= '0';
+	o_BNE 		<= '0';
+	o_Halt      <= '0';
+	o_RegDst 	<= '0';
+	o_SignExt 	<= '0';
 
-elsif (readIn = "001101") then --ori 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '1';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '0';
-	s_Halt <= '0';
-	signExt <= '0';
-    
-elsif (readIn = "001010") then --slti 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '1';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '0';
-	s_Halt <= '0';
-	signExt <= '0';
-    
-elsif (readIn = "000100") then --beq 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '0';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '0';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '1';
-	s_Halt <= '0';
-	signExt <= '0';
-    
-elsif (readIn = "000101") then --bne 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '0';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '0';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '1';
-	s_Halt <= '0';
-	signExt <= '0';
-    
-elsif (readIn = "000010") then --j 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '0';
-	RegDst <= '0';
-	Jump <= '1';
-	Branch <= '1';
-	s_Halt <= '0';
-	signExt <= '0';
+    if (i_opcode = "000000") then --R type value 
+		if(i_func = "001000") then --jr
+			o_JR 		<= '1';
+			o_Jump 		<= '1';
 
-elsif (readIn = "000011") then --jal 
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '1';
-	MemtoReg <= '0';
-	jalSig <= '1';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '1';
-	RegDst <= '0';
-	Jump <= '1';
-	Branch <= '0';
-	s_Halt <= '0';
-	signExt <= '0';
+		elsif(i_func = "101010" or i_func = "100010" or i_func = "100011") then --slt or sub or subu
+			o_RegWr <= '1';
+			o_RegDst <= '1';
+		elsif(i_func = "000000" or i_func = "000010"or i_func = "000011") then --sll | srl | sra
+			o_ALUSrc <= '1';
+			o_RegWr <= '1';
+			o_RegDst <= '1';
+		--other
+			o_RegWr <= '1';
+			o_RegDst <= '1';
+		end if;
 
-elsif (readIn = "010100") then --halt(stops)
-	ALUControl <= readIn(5 downto 0);
-	ALUSrc <= '0';
-	MemtoReg <= '0';
-	jalSig <= '0';
-	jrSig <= '0';
-	s_DMemWr <= '0';
-	s_RegWr <= '0';
-	RegDst <= '0';
-	Jump <= '0';
-	Branch <= '0';
-	s_Halt <= '1';
-	signExt <= '0';
+	elsif (i_opcode = "000010") then --j 
+	o_ALUSrc <= '1';
+	o_Jump <= '1';
+	o_Branch <= '1';
+
+	elsif (i_opcode = "000011") then --jal 
+	o_ALUSrc <= '1';
+	o_Jal <= '1';
+	o_RegWr <= '1';
+	o_Jump <= '1';
+
+	elsif (i_opcode = "000100") then --beq 
+	o_Branch <= '1';
+	
+	elsif (i_opcode = "000101") then --bne 
+	o_Branch <= '1';
+	o_BNE	 <= '1';
+
+    elsif (i_opcode = "001000") then --addi 
+	o_ALUSrc <= '1';
+	o_RegWr <= '1';
+	o_signExt <= '1';
+    
+    elsif (i_opcode = "001001") then --addiu 
+	o_ALUSrc <= '1';
+	o_RegWr <= '1';
+	o_signExt <= '1';
+	o_ALUSrc <= '1';
+	o_RegWr <= '1';
+
+	elsif (i_opcode = "001010") then --slti 
+	o_ALUSrc <= '1';
+	o_RegWr <= '1';
+
+	elsif (i_opcode = "001100") then --andi 
+	o_ALUSrc <= '1';
+	o_RegWr <= '1';
+    
+	elsif (i_opcode = "001101") then --ori 
+	o_ALUSrc <= '1';
+	o_RegWr <= '1';
+	
+	elsif (i_opcode = "001110") then --xori 
+	o_ALUSrc <= '1';
+	o_RegWr <= '1';
+
+	elsif (i_opcode = "001111") then --lui 
+	o_ALUSrc <= '1';
+	o_RegWr <= '1';
+
+	elsif (i_opcode = "100011") then --lw 
+	o_ALUSrc <= '1';
+	o_MemtoReg <= '1';
+	o_RegWr <= '1';
+
+    elsif (i_opcode = "101011") then --sw
+	o_ALUSrc <= '1';
+	o_DMemWr <= '1';
+
+	elsif (i_opcode = "010100") then --halt(stops)
+	o_Halt <= '1';
 
 end if;
 

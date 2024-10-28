@@ -8,7 +8,7 @@ entity alu is
     port (
         i_OP_A      : in    std_logic_vector(N-1 downto 0);
         i_OP_B      : in    std_logic_vector(N-1 downto 0);
-        i_ALUOP     : in    std_logic_vector(3 downto 0); -- 4 bit to support 13 functions
+        i_ALUCTRL     : in    std_logic_vector(3 downto 0); -- 4 bit to support 13 functions
         o_F         : out   std_logic_vector(N-1 downto 0);
         o_C_OUT     : out   std_logic;
         o_OVERFLOW  : out   std_logic;
@@ -20,10 +20,10 @@ end alu;
 -- 0001 or *
 -- 0010 add/addi *
 -- 0011 addu/addiu
--- 0100 
+-- 0100 lui
 -- 0101 xor
 -- 0110 sub *
--- 0111 slt *
+-- 0111 slt/slti *
 
 -- 1000 subu
 -- 1001 sll
@@ -104,24 +104,33 @@ end component;
         );
     end component;
     
-    signal s_adder, s_shifter, s_and, s_or, s_xor, s_out, s_slt, s_repl, s_nor : std_logic_vector(31 downto 0);
+    signal s_adder, s_shifter, s_and, s_or, s_xor, s_out, s_slt, s_repl, s_nor, s_shift_me : std_logic_vector(31 downto 0);
     signal s_add_sub, s_cout, s_overflow, s_zero, s_shift_dir, s_shift_type : std_logic;
-    
+    signal s_shamt  : std_logic_vector(4 downto 0);
+
     begin 
 
     o_C_out <= '0';
 
-    with i_ALUOP select
-        s_add_sub <= '1' when "1000" | "0110", --sets sub bit to 1 when sub or subu
+    with i_ALUCTRL select
+        s_add_sub <= '1' when "1000" | "0110" | "0111", --sets sub bit to 1 when sub or subu or slt
                      '0' when others;
 
-    with i_ALUOP select
+    with i_ALUCTRL select
         s_shift_dir <=  '1' when "1001", --shift left
                         '0' when others;
 
-    with i_ALUOP select
+    with i_ALUCTRL select
         s_shift_type <= '1' when "1011",
                         '0' when others;
+
+    with i_ALUCTRL select
+        s_shamt <= "10000" when "0100",
+                   i_OP_A(4 downto 0) when others;
+
+    with i_ALUCTRL select
+        s_shift_me <= i_OP_B when "0100",
+                      i_OP_A;       
 
     and32: and_32bit 
     port map(
@@ -163,8 +172,8 @@ end component;
 
     shift: shifter
     port map(
-        i_D => i_OP_A,
-        i_AMT => i_OP_A(4 downto 0),
+        i_D => s_shift_me,
+        i_AMT => s_shamt,
         i_DIR => s_shift_dir,
         i_ARITH => s_shift_type,
         o_Q => s_shifter
@@ -202,7 +211,7 @@ end component;
 -- 1100 repl.qb
 -- 1101 nor
 
-    with i_ALUOP select
+    with i_ALUCTRL select
         s_out <= s_and when "0000",--and
                  s_or when "0001", -- or
                  s_adder when "0010" | "0011" | "0110" | "1000", --add/addi, addu/addiu, sub, subu
@@ -214,7 +223,7 @@ end component;
                  X"00000000" when others;
 
     
-    with i_ALUOP select 
+    with i_ALUCTRL select 
         s_overflow <= '0' when "0011" | "1000", --addu/addiu, subu
                        s_overflow when others;
     

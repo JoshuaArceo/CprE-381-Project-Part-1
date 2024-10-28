@@ -100,16 +100,11 @@ architecture structure of MIPS_Processor is
     component fetch_logic is
       generic(DATA_WIDTH : integer);
       PORT (
-        i_PC              : in std_logic_vector((DATA_WIDTH - 1) DOWNTO 0); 
-        i_branch_to_adder : in std_logic_vector((DATA_WIDTH - 1) DOWNTO 0); 
-        i_jump_to_adder   : in std_logic_vector((DATA_WIDTH - 1) DOWNTO 0); 
-        i_jr              : in std_logic_vector((DATA_WIDTH - 1) DOWNTO 0); 
-        i_jr_to_select    : in std_logic;                        
-        i_branch          : in std_logic;                        
-        i_zero            : in std_logic;                        
-        i_jump            : in std_logic;                        
-        o_PC              : out std_logic_vector((DATA_WIDTH - 1) DOWNTO 0); 
-        o_PC_plus_4       : out std_logic_vector((DATA_WIDTH - 1) downto 0) 
+        i_PC              : in std_logic_vector(N - 1 downto 0); 
+        i_branch          : in std_logic; 
+        i_imm             : in std_logic_vector(N - 1 downto 0);
+        i_ALU_Zero        : in std_logic;
+        o_PC              : out std_logic_vector(N - 1 downto 0)
         );
       end component;
       
@@ -177,8 +172,8 @@ architecture structure of MIPS_Processor is
      
      component control is 
         port( 
-          readIn       :   in std_logic_vector(5 downto 0); --bits 31-26 opcode
-          jrCode       :   in std_logic_vector(5 downto 0);
+          i_opcode       :   in std_logic_vector(5 downto 0); --bits 31-26 opcode
+          i_func       :   in std_logic_vector(5 downto 0);
           ALUControl   :   out std_logic_vector(5 downto 0); --0010 will perform add of A and B
           ALUSrc       :   out std_logic; --use correcty extended immediate from B
           MemtoReg     :   out std_logic; -- on 0 does not read from memory
@@ -270,7 +265,7 @@ architecture structure of MIPS_Processor is
     control: control 
     -- generic map()
     port map(
-        readIn => s_inst_opcode,
+        i_opcode => s_inst_opcode,
         jr_code => s_instFunc
         ALUControl => s_ALUControl,
         ALUSrc => s_ALUSrc,
@@ -297,14 +292,10 @@ architecture structure of MIPS_Processor is
     -- generic map()
     port map(
       i_PC => s_IMemAddr,
-      i_branch_to_adder => --TODO
-      i_jr => s_jrSig,
-      i_jr_to_select => --TODO
       i_branch => s_Branch,
-      i_zero => s_ALU_Zero
-      i_jump => s_Jump,
-      o_PC => s_IMemAddr,
-      o_PC_plus_4 => s_NextInstAddr
+      i_imm => s_ImmExt,
+      i_ALU_Zero => s_ALU_Zero,
+      o_PC => s_NextInstAddr
     );
 
     ALUSrc mux2t1_N
@@ -318,7 +309,7 @@ architecture structure of MIPS_Processor is
     ALUCtrl: ALUcontrol
     port map(
       s_type => s_ALUControl,
-      opcode => s_inst_opcode,
+      opcode => s_inst_func,
       s_out => s_ALUOP 
     );
 

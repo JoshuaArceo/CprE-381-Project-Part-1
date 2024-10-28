@@ -130,7 +130,7 @@ end component;
 
     with i_ALUCTRL select
         s_shift_me <= i_OP_B when "0100",
-                      i_OP_A;       
+                      i_OP_A when others;       
 
     and32: and_32bit 
     port map(

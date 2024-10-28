@@ -365,7 +365,5 @@ architecture structure of MIPS_Processor is
     );
 
 
-
-
 end structure;
 

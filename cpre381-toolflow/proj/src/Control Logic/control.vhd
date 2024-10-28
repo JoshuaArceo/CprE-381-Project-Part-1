@@ -41,9 +41,8 @@ P1: process(i_opcode)
 	o_RegDst 	<= '0';
 	o_SignExt 	<= '0';
 
-    if(opcode ="010100") then
+    if(i_opcode = "010100") then
 		o_Halt <= '1'; 
-		return;
 	elsif(i_opcode = "000000") then --R type value 
 		if(i_func = "001000") then --jr
 			o_JR 		<= '1';

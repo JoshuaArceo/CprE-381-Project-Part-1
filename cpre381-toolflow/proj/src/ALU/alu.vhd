@@ -117,7 +117,7 @@ end component;
                      '0' when others;
 
     with i_ALUCTRL select
-        s_shift_dir <=  '1' when "1001", --shift left
+        s_shift_dir <=  '1' when "1001" | "0100", --shift left
                         '0' when others;
 
     with i_ALUCTRL select
@@ -217,7 +217,7 @@ end component;
                  s_adder when "0010" | "0011" | "0110" | "1000", --add/addi, addu/addiu, sub, subu
                  s_xor when "0101", --xor
                  s_slt when "0111", --slt
-                 s_shifter when "1001" | "1010" | "1011", --sll, srl, sra
+                 s_shifter when "1001" | "1010" | "1011" | "0100", --sll, srl, sra
                  s_repl when "1100",
                  s_nor when "1101",
                  X"00000000" when others;

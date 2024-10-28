@@ -41,7 +41,10 @@ P1: process(i_opcode)
 	o_RegDst 	<= '0';
 	o_SignExt 	<= '0';
 
-    if (i_opcode = "000000") then --R type value 
+    if(opcode ="010100") then
+		o_Halt <= '1'; 
+		return;
+	elsif(i_opcode = "000000") then --R type value 
 		if(i_func = "001000") then --jr
 			o_JR 		<= '1';
 			o_Jump 		<= '1';
@@ -54,6 +57,7 @@ P1: process(i_opcode)
 			o_RegWr <= '1';
 			o_RegDst <= '1';
 		--other
+		else
 			o_RegWr <= '1';
 			o_RegDst <= '1';
 		end if;
@@ -85,8 +89,7 @@ P1: process(i_opcode)
 	o_ALUSrc <= '1';
 	o_RegWr <= '1';
 	o_signExt <= '1';
-	o_ALUSrc <= '1';
-	o_RegWr <= '1';
+
 
 	elsif (i_opcode = "001010") then --slti 
 	o_ALUSrc <= '1';
@@ -116,9 +119,7 @@ P1: process(i_opcode)
     elsif (i_opcode = "101011") then --sw
 	o_ALUSrc <= '1';
 	o_DMemWr <= '1';
-
-	elsif (i_opcode = "010100") then --halt(stops)
-	o_Halt <= '1'; --NEVER HALT
+	
 
 end if;
 

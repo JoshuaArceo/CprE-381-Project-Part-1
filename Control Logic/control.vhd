@@ -2,7 +2,8 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity control is
-port( i_opcode       :   in std_logic_vector(5 downto 0); --bits 31-26 opcode
+port( 
+	  i_opcode       :   in std_logic_vector(5 downto 0); --bits 31-26 opcode
       i_func         :   in std_logic_vector(5 downto 0);
       o_ALUSrc       :   out std_logic; --use correcty extended immediate from B
       o_MemtoReg     :   out std_logic; -- on 0 does not read from memory

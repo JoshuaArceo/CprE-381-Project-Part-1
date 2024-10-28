@@ -61,12 +61,14 @@ architecture structure of MIPS_Processor is
   
   signal s_inst_opcode, s_instFunc    :std_logic_vector(5 downto 0);
   signal s_inst_addr_RS, s_inst_Addr_RT, s_inst_Addr_RD, s_inst_shamt: std_logic((REG_ADDR_WIDTH -1) downto 0);
+  signal s_inst_jumpAddr: std_logic_vector(25 downto 0);
   signal s_instImm      : std_logic_vector((16-1) downto 0);
 
   signal s_ImmExt       : std_logic_vector((DATA_WIDTH - 1) downto 0);
 
+  signal s_PC4          : std_logic_vector((DATA_WIDTH -1) downto 0);
   --RegFile Signals
-  signal s_regW_addr : std_logic_vector((REG_ADDR_WIDTH -1) downto 0);
+  signal s_regW_addr, s_regDstMux : std_logic_vector((REG_ADDR_WIDTH -1) downto 0);
   signal s_Reg_A, s_Reg_B : std_logic_vector((DATA_WIDTH -1 )downto 0);
 
   --ALU Signals
@@ -77,11 +79,11 @@ architecture structure of MIPS_Processor is
 
   -- control signals
   signal s_ALUControl : std_logic_vector(5 downto 0);
-  signal s_ALUSrc, s_MemtoReg, s_jalSig, s_jrSig, s_DMemWr, s_RegWr, s_Jump, s_Branch, s_Halt, s_RegDst, s_signExt : std_logic;
+  signal s_ALUSrc, s_MemtoReg, s_JAL, s_JR, s_DMemWr, s_RegWr, s_Jump, s_Branch, s_BNE, s_Halt, s_RegDst, s_signExt : std_logic;
 
   --Write Back Data
-  s_wb_Data : std_logic_vector((DATA_WIDTH)-1 downto 0);
-
+  signal s_wb_Data, s_wb_JData : std_logic_vector((DATA_WIDTH)-1 downto 0);
+ 
 
   component mem is
     generic(ADDR_WIDTH : integer;
@@ -101,9 +103,15 @@ architecture structure of MIPS_Processor is
       generic(DATA_WIDTH : integer);
       PORT (
         i_PC              : in std_logic_vector(N - 1 downto 0); 
-        i_branch          : in std_logic; 
-        i_imm             : in std_logic_vector(N - 1 downto 0);
+        i_JAddr           : in std_logic_vector(25 downto 0);
+        i_Imm             : in std_logic_vector(N - 1 downto 0);
+        i_RegA            : in std_logic_vector(N - 1 downto 0);
+        i_Branch          : in std_logic; 
         i_ALU_Zero        : in std_logic;
+        i_Jump            : in std_logic;  
+        i_JR              : in std_logic;
+        i_BNE             : in std_logic;  
+        o_PC4             : out std_logic_vector(N - 1 downto 0);
         o_PC              : out std_logic_vector(N - 1 downto 0)
         );
       end component;
@@ -152,9 +160,10 @@ architecture structure of MIPS_Processor is
     end component;
 
     component ALUcontrol is 
-    port(s_type       : in std_logic_Vector(5 downto 0);
-         opcode       : in std_logic_Vector(5 downto 0);
-         s_out        : out std_logic_Vector(3 downto 0)
+    port(
+      i_func       : in std_logic_Vector(5 downto 0);
+      i_opcode       : in std_logic_Vector(5 downto 0);
+      s_out        : out std_logic_Vector(3 downto 0)
 	   );  
      end component;
 
@@ -173,19 +182,19 @@ architecture structure of MIPS_Processor is
      component control is 
         port( 
           i_opcode       :   in std_logic_vector(5 downto 0); --bits 31-26 opcode
-          i_func       :   in std_logic_vector(5 downto 0);
-          ALUControl   :   out std_logic_vector(5 downto 0); --0010 will perform add of A and B
-          ALUSrc       :   out std_logic; --use correcty extended immediate from B
-          MemtoReg     :   out std_logic; -- on 0 does not read from memory
-          jalSig       :   out std_logic;
-          jrSig        :   out std_logic;
-          s_DMemWr     :   out std_logic; --memwrite from text, on 0 does not write to memory
-          s_RegWr      :   out std_logic; --Regwrite from text, on 1 writes back to a register
-          Jump	       :   out std_logic;
-          Branch	     :   out std_logic;
-          s_Halt	     :   out std_logic;
-          RegDst       :   out std_logic; --uses rt as destination register rather than rd
-          signExt      :   out std_logic
+          i_func         :   in std_logic_vector(5 downto 0);
+          o_ALUSrc       :   out std_logic; --use correcty extended immediate from B
+          o_MemtoReg     :   out std_logic; -- on 0 does not read from memory
+          o_Jal          :   out std_logic;
+          o_JR           :   out std_logic;
+          o_DMemWr       :   out std_logic; --memwrite from text, on 0 does not write to memory
+          o_RegWr        :   out std_logic; --Regwrite from text, on 1 writes back to a register
+          o_Jump	     :   out std_logic;
+          o_Branch	     :   out std_logic;
+          o_BNE			 :   out std_logic;
+          o_Halt	     :   out std_logic;
+          o_RegDst       :   out std_logic;  --uses rt as destination register rather than rd
+          o_SignExt	     :   out std_logic
           ); 
       end component;
 
@@ -240,12 +249,19 @@ architecture structure of MIPS_Processor is
     s_instFunc     <= s_Inst(5 downto 0);
 
 
-
-    muxRegWrite mux2t1_N
+    muxRegWrite0: mux2t1_N
     port map(
       i_S => s_RegDst,
       i_D0 => s_inst_addr_RT
       i_D1 => s_inst_addr_RD
+      o_O => s_regDstMux
+    );
+
+    muxRegWrite1: mux2t1_N
+    port map(
+      i_S => s_RegDst,
+      i_D0 => s_regDstMux,
+      i_D1 => REG_31,
       o_O => s_regW_addr
     )
 
@@ -255,7 +271,7 @@ architecture structure of MIPS_Processor is
       i_rB => s_inst_addr_RT,
       i_rW => s_inst_addr_RD,
       i_WE => s_RegWr,
-      i_D => s_wb_data,
+      i_D => s_wb_JData,
       i_CLK => iCLK,
       i_RST => iRST,
       o_ReadA => s_Reg_A,
@@ -270,8 +286,8 @@ architecture structure of MIPS_Processor is
         ALUControl => s_ALUControl,
         ALUSrc => s_ALUSrc,
         MemtoReg => s_MemtoReg,
-        jalSig => s_jalSig,
-        jrSig => s_jrSig,
+        jalSig => s_JAL,
+        jrSig => s_JR,
         s_DMemWr => s_DMemWr,
         s_RegWr => s_RegWr,
         Jump => s_Jump,
@@ -292,9 +308,15 @@ architecture structure of MIPS_Processor is
     -- generic map()
     port map(
       i_PC => s_IMemAddr,
-      i_branch => s_Branch,
-      i_imm => s_ImmExt,
+      i_JAddr => s_inst_jumpAddr,
+      i_Imm => s_ImmExt,
+      i_RegA => s_Reg_A,
+      i_Branch => s_Branch,
       i_ALU_Zero => s_ALU_Zero,
+      i_Jump => s_Jump,
+      i_JR => s_JR,
+      i_BNE => s_BNE,
+      o_PC4 => s_PC4,
       o_PC => s_NextInstAddr
     );
 
@@ -308,8 +330,8 @@ architecture structure of MIPS_Processor is
 
     ALUCtrl: ALUcontrol
     port map(
-      s_type => s_ALUControl,
-      opcode => s_inst_func,
+      i_func => s_inst_func,
+      i_opcode => ,s_inst_opcode
       s_out => s_ALUOP 
     );
 
@@ -334,6 +356,13 @@ architecture structure of MIPS_Processor is
       o_O => s_wb_Data
     );
 
+    wbJALMux : mux2t1_N
+    port map(
+      i_S => s_JAL,
+      i_D0 => s_wb_Data,
+      i_D1 => s_PC4,
+      o_O => s_wb_JData
+    );
 
 
 

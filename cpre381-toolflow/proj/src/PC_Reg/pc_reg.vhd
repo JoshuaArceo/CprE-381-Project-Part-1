@@ -43,7 +43,7 @@ generateLower: for i in 0 to 21 generate
 		o_Q => o_Q(i));
 end generate generateLower;
 
-DFFGI:	pc_dffg --sets to 1 on reset
+	DFFGI:	pc_dffg --sets to 1 on reset
 	port map(
 		i_CLK => i_CLK,
 		i_RST => i_RST,

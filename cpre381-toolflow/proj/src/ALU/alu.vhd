@@ -224,8 +224,8 @@ end component;
 
     
     with i_ALUCTRL select 
-    s_out_overflow <= '0' when "0011" | "1000" | "0000", --addu/addiu, subu
-                       s_overflow when others;
+    s_out_overflow <= s_overflow when "0010" | "0110", --addu/addiu, subu
+                      '0'  when others;
     
 
     with s_out select

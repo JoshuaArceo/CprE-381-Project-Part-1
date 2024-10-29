@@ -1,3 +1,1 @@
-/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/mips/fibonacci.s
-/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/mips/grendel.s
-/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/mips/simplebranch.s
+/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/mips/ToFix/sw_1.s

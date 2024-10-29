@@ -20,7 +20,7 @@ package MIPS_types is
 
   constant REG_ADDR_WIDTH : integer := 5;
 
-  constant REG_31 : std_logic_vector((REG_ADDR_WIDTH -1) downto 0) := "11111";
+  constant REG_31 : std_logic_vector((REG_ADDR_WIDTH -1 ) downto 0) := "11111";
 
   -- Example record type. Declare whatever types you need here
   type control_t is record

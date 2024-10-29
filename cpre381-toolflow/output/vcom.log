@@ -1,6 +1,6 @@
 QuestaSim-64 vcom 2024.2 Compiler 2024.05 May 20 2024
-Start time: 20:45:51 on Oct 28,2024
-vcom -2008 -work internal/ModelSimContainer/work proj/src/MIPS_types.vhd internal/testpy/tb.vhd proj/src/MIPS_types.vhd proj/src/32-Bit/invg.vhd proj/src/32-Bit/andg2.vhd proj/src/32-Bit/org2.vhd proj/src/32-Bit/xorg2.vhd proj/src/Barrel_Shifter/shifter.vhd proj/src/TopLevel/MIPS_Processor.vhd proj/src/TopLevel/mem.vhd proj/src/Primitives/nor_32bit.vhd proj/src/Primitives/xorg2.vhd proj/src/Primitives/ripple_adder_N.vhd proj/src/Primitives/and_32bit.vhd proj/src/Primitives/reg_N.vhd proj/src/Primitives/extend16t32.vhd proj/src/Primitives/invg.vhd proj/src/Primitives/mux2t1_df.vhd proj/src/Primitives/decoder_5t32.vhd proj/src/Primitives/regfile.vhd proj/src/Primitives/dffg.vhd proj/src/Primitives/org2.vhd proj/src/Primitives/Adder.vhd proj/src/Primitives/add_sub_N.vhd proj/src/Primitives/or_32bit.vhd proj/src/Primitives/xor_32bit.vhd proj/src/Primitives/bus_6digit.vhd proj/src/Primitives/onescomp_N.vhd proj/src/Primitives/full_adder.vhd proj/src/Primitives/mux2t1_N.vhd proj/src/Primitives/mux32t1_32.vhd proj/src/Primitives/andg2.vhd proj/src/PC_Reg/pc_reg.vhd proj/src/PC_Reg/pc_dffg.vhd proj/src/Fetch Logic/mux2t1.vhd proj/src/Fetch Logic/fetch_logic.vhd proj/src/ALU/ALUcontrol.vhd proj/src/ALU/replicator.vhd proj/src/ALU/alu.vhd proj/src/Control Logic/control.vhd 
+Start time: 21:11:39 on Oct 28,2024
+vcom -2008 -work internal/ModelSimContainer/work proj/src/MIPS_types.vhd internal/testpy/tb.vhd proj/src/MIPS_types.vhd proj/src/32-Bit/invg.vhd proj/src/32-Bit/andg2.vhd proj/src/32-Bit/org2.vhd proj/src/32-Bit/xorg2.vhd proj/src/Barrel_Shifter/shifter.vhd proj/src/TopLevel/MIPS_Processor.vhd proj/src/TopLevel/mem.vhd proj/src/Primitives/nor_32bit.vhd proj/src/Primitives/xorg2.vhd proj/src/Primitives/ripple_adder_N.vhd proj/src/Primitives/and_32bit.vhd proj/src/Primitives/reg_N.vhd proj/src/Primitives/extend16t32.vhd proj/src/Primitives/invg.vhd proj/src/Primitives/mux2t1_df.vhd proj/src/Primitives/decoder_5t32.vhd proj/src/Primitives/regfile.vhd proj/src/Primitives/dffg.vhd proj/src/Primitives/org2.vhd proj/src/Primitives/Adder.vhd proj/src/Primitives/add_sub_N.vhd proj/src/Primitives/or_32bit.vhd proj/src/Primitives/xor_32bit.vhd proj/src/Primitives/bus_6digit.vhd proj/src/Primitives/onescomp_N.vhd proj/src/Primitives/full_adder.vhd proj/src/Primitives/mux2t1_N.vhd proj/src/Primitives/mux32t1_32.vhd proj/src/Primitives/andg2.vhd proj/src/PC_Reg/pc_reg.vhd proj/src/PC_Reg/pc_dffg.vhd proj/src/Fetch Logic/tb_fetch_logic.vhd proj/src/Fetch Logic/mux2t1.vhd proj/src/Fetch Logic/fetch_logic.vhd proj/src/ALU/ALUcontrol.vhd proj/src/ALU/replicator.vhd proj/src/ALU/alu.vhd proj/src/Control Logic/control.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
@@ -97,17 +97,10 @@ Generic map will be ignored.
 -- Compiling architecture structural of pc_reg
 -- Compiling entity pc_dffg
 -- Compiling architecture mixed of pc_dffg
--- Compiling entity mux2t1
--- Compiling architecture structure of mux2t1
--- Compiling entity fetch_logic
--- Compiling architecture structural of fetch_logic
--- Compiling entity ALUcontrol
--- Compiling architecture structural of ALUcontrol
--- Compiling entity replicator
--- Compiling architecture dataflow of replicator
--- Compiling entity alu
--- Compiling architecture structural of alu
-** Error: proj/src/ALU/alu.vhd(116): (vcom-1298) OTHERS choice can only be the only choice in the last of the selected waveforms.
-** Note: proj/src/ALU/alu.vhd(246): VHDL Compiler exiting
-End time: 20:45:51 on Oct 28,2024, Elapsed time: 0:00:00
-Errors: 1, Warnings: 19
+-- Compiling entity tb_fetch_logic
+-- Compiling architecture mixed of tb_fetch_logic
+** Error (suppressible): proj/src/Fetch Logic/tb_fetch_logic.vhd(57): (vcom-1272) Length of expected is 26; length of actual is 28.
+** Error (suppressible): proj/src/Fetch Logic/tb_fetch_logic.vhd(80): (vcom-1272) Length of expected is 26; length of actual is 28.
+** Note: proj/src/Fetch Logic/tb_fetch_logic.vhd(107): VHDL Compiler exiting
+End time: 21:11:39 on Oct 28,2024, Elapsed time: 0:00:00
+Errors: 2, Warnings: 19

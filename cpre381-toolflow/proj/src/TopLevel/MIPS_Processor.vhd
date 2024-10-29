@@ -300,7 +300,6 @@ architecture structure of MIPS_Processor is
     generic map(N => N)
     port map(
       i_PC => s_NextInstAddr,
-      -- i_RST => iRST,
       i_JAddr => s_inst_jumpAddr,
       i_Imm => s_ImmExt,
       i_RegA => s_Reg_A,

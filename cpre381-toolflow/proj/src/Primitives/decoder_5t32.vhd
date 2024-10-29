@@ -10,7 +10,7 @@ end decoder_5t32;
 
 architecture dataflow of decoder_5t32 is 
 begin
-	process(i_In)
+	process(i_In, i_WE)
 	begin
 	if i_WE = '1' then
 		case i_In is

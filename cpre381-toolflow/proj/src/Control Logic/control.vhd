@@ -27,7 +27,7 @@ architecture behavioral of control is
 begin
 
 
-P1: process(i_opcode) 
+process(i_opcode, i_func) 
   begin
 	o_ALUSrc 	<= '0';
 	o_MemtoReg 	<= '0';

@@ -1,1 +1,0 @@
-/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/mips/ToFix/sw_1.s

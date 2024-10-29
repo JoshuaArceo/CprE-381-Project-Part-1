@@ -87,8 +87,16 @@ architecture structural of alu is
         o_F          : out std_logic_vector(31 downto 0)
     );
 end component;
-    
-    component xorg2 is
+
+
+    component invg is
+        port(
+            i_A : in std_logic;
+            o_F : out std_logic
+        );
+    end component;
+
+    component andg2 is
         port(
             i_A : in std_logic;
             i_B          : in std_logic;
@@ -105,7 +113,7 @@ end component;
     end component;
     
     signal s_adder, s_shifter, s_and, s_or, s_xor, s_out, s_slt, s_repl, s_nor, s_shift_me : std_logic_vector(31 downto 0);
-    signal s_add_sub, s_cout, s_overflow, s_out_overflow, s_zero, s_shift_dir, s_shift_type : std_logic;
+    signal s_add_sub, s_cout, s_overflow, s_out_overflow, s_zero, s_shift_dir, s_shift_type, s_notCout : std_logic;
     signal s_shamt  : std_logic_vector(4 downto 0);
 
     begin 
@@ -113,8 +121,8 @@ end component;
     o_C_out <= '0';
 
     with i_ALUCTRL select
-    s_shamt <= i_OP_B(10 downto 6) when "1001" | "1010" | "1011",
-                "10000" when others;
+    s_shamt <="10000" when "0100" ,
+            i_OP_B(10 downto 6) when others;
 
     with i_ALUCTRL select
         s_add_sub <= '1' when "1000" | "0110" | "0111", --sets sub bit to 1 when sub or subu or slt
@@ -163,9 +171,15 @@ end component;
         o_F => s_xor
     );
 
-    xorSLT: xorg2
+    notCout: invg
     port map(
         i_A => s_overflow,
+        o_F => s_notCout
+    );
+
+    sltAnd: andg2
+    port map(
+        i_A => s_notCout,
         i_B => s_adder(31),
         o_F => s_slt(0)
     );

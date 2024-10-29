@@ -1,0 +1,2 @@
+/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/mips/base/sll_1.s
+/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/mips/base/sll_2.s

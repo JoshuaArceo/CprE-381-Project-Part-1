@@ -7,6 +7,7 @@ port(
       i_func         :   in std_logic_vector(5 downto 0);
       o_ALUSrc       :   out std_logic; --use correcty extended immediate from B
       o_MemtoReg     :   out std_logic; -- on 0 does not read from memory
+	  o_Shift          :   out std_logic;
       o_Jal          :   out std_logic;
       o_JR           :   out std_logic;
       o_DMemWr       :   out std_logic; --memwrite from text, on 0 does not write to memory
@@ -30,6 +31,7 @@ P1: process(i_opcode)
   begin
 	o_ALUSrc 	<= '0';
 	o_MemtoReg 	<= '0';
+	o_Shift		<= '0';
 	o_Jal 		<= '0';
 	o_JR 		<= '0';
 	o_DMemWr 	<= '0';
@@ -46,8 +48,6 @@ P1: process(i_opcode)
 	elsif(i_opcode = "000000") then --R type value 
 		if(i_func = "001000") then --jr
 			o_JR 		<= '1';
-			o_Jump 		<= '1';
-
 		elsif(i_func = "101010" or i_func = "100010" or i_func = "100011") then --slt or sub or subu
 			o_RegWr <= '1';
 			o_RegDst <= '1';
@@ -55,6 +55,7 @@ P1: process(i_opcode)
 			o_ALUSrc <= '1';
 			o_RegWr <= '1';
 			o_RegDst <= '1';
+			o_Shift <= '1';				
 		--other
 		else
 			o_RegWr <= '1';
@@ -76,7 +77,7 @@ P1: process(i_opcode)
 	o_Branch <= '1';
 	
 	elsif (i_opcode = "000101") then --bne 
-	o_Branch <= '1';
+	-- o_Branch <= '1';
 	o_BNE	 <= '1';
 
     elsif (i_opcode = "001000") then --addi 

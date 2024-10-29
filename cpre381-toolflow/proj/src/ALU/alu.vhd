@@ -117,16 +117,20 @@ end component;
                      '0' when others;
 
     with i_ALUCTRL select
-        s_shift_dir <=  '1' when "1001" | "0100", --shift left
+        s_shift_dir <=  '1' when "1001" | "0100", --shift left 
                         '0' when others;
 
     with i_ALUCTRL select
         s_shift_type <= '1' when "1011",
                         '0' when others;
 
+ --1001 sll
+-- 1010 srl
+-- 1011 sra
+                        
     with i_ALUCTRL select
         s_shamt <= "10000" when "0100",
-                   i_OP_A(4 downto 0) when others;
+                   i_OP_B(4 downto 0) when others;
 
     with i_ALUCTRL select
         s_shift_me <= i_OP_B when "0100",
@@ -224,7 +228,7 @@ end component;
 
     
     with i_ALUCTRL select 
-    s_out_overflow <= '0' when "0011" | "1000", --addu/addiu, subu
+    s_out_overflow <= '0' when "0011" | "1000" | "0000", --addu/addiu, subu
                        s_overflow when others;
     
 

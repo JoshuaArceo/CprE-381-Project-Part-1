@@ -60,5 +60,24 @@ begin
     s_func <= "100100";
     wait for 10ns;
 
+    s_iA <= X"0000ABCD";
+    s_iB <= X"FFFF0000";
+    s_opcode <= "000000";
+    s_func <= "000011";
+    wait for 10ns;
+
+    s_iA <= X"0000FFFF";
+    s_iB <= X"FFFF0000";
+    s_opcode <= "001000";
+    -- s_func <= "10010";
+    wait for 10ns;
+
+    s_iA <= X"0000FFFF";
+    s_iB <= X"00001234";
+    s_opcode <= "001111";
+    -- s_func <= "10010";
+    wait for 10ns;
+    
+    
 end process;
 end mixed;

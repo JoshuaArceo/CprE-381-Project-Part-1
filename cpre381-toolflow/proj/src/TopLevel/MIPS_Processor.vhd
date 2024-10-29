@@ -72,7 +72,7 @@ architecture structure of MIPS_Processor is
   signal s_Reg_A, s_Reg_B : std_logic_vector((DATA_WIDTH -1 )downto 0);
 
   --ALU Signals
-  signal  s_ALU_Zero, s_ALU_COUT : std_logic;
+  signal  s_ALU_Zero, s_ALU_COUT, s_ALU_Ovfl, s_NotBranch: std_logic;
   signal s_ALUOP : std_logic_vector(3 downto 0);
   signal s_ALU_Out : std_logic_vector((DATA_WIDTH - 1) downto 0); 
   signal s_ALU_A_In, s_ALU_B_In   :std_logic_vector((DATA_WIDTH - 1) downto 0);
@@ -97,6 +97,21 @@ architecture structure of MIPS_Processor is
 
   -- TODO: You may add any additional signals or components your implementation 
   --       requires below this comment
+
+  component invg is
+    port(
+        i_A : in std_logic;
+        o_F : out std_logic
+    );
+end component;
+
+component andg2 is
+    port(
+        i_A : in std_logic;
+        i_B          : in std_logic;
+        o_F          : out std_logic
+    );
+end component;
 
     component fetch_logic is
       generic(N : integer);
@@ -388,8 +403,21 @@ architecture structure of MIPS_Processor is
       i_ALUCTRL => s_ALUOP,
       o_F => s_ALU_Out,
       o_C_OUT => s_ALU_COUT,
-      o_OVERFLOW => s_Ovfl,
+      o_OVERFLOW => s_ALU_Ovfl,
       o_ZERO => s_ALU_Zero
+    );
+
+    notBranch: invg
+    port map(
+      i_A => s_Branch,
+      o_F => s_NotBranch
+    );
+
+    ovflAnd: andg2
+    port map(
+      i_A => s_ALU_Ovfl,
+      i_B =>  s_NotBranch,
+      o_F => s_Ovfl
     );
 
     oALUOut <= s_ALU_Out;

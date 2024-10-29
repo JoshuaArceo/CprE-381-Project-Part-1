@@ -1,5 +1,5 @@
 QuestaSim-64 vcom 2024.2 Compiler 2024.05 May 20 2024
-Start time: 00:12:14 on Oct 29,2024
+Start time: 00:53:25 on Oct 29,2024
 vcom -2008 -work internal/ModelSimContainer/work proj/src/MIPS_types.vhd internal/testpy/tb.vhd proj/src/MIPS_types.vhd proj/src/Barrel_Shifter/shifter.vhd proj/src/TopLevel/MIPS_Processor.vhd proj/src/TopLevel/mem.vhd proj/src/Primitives/nor_32bit.vhd proj/src/Primitives/xorg2.vhd proj/src/Primitives/ripple_adder_N.vhd proj/src/Primitives/and_32bit.vhd proj/src/Primitives/reg_N.vhd proj/src/Primitives/extend16t32.vhd proj/src/Primitives/invg.vhd proj/src/Primitives/mux2t1_df.vhd proj/src/Primitives/decoder_5t32.vhd proj/src/Primitives/regfile.vhd proj/src/Primitives/dffg.vhd proj/src/Primitives/org2.vhd proj/src/Primitives/Adder.vhd proj/src/Primitives/add_sub_N.vhd proj/src/Primitives/or_32bit.vhd proj/src/Primitives/xor_32bit.vhd proj/src/Primitives/bus_6digit.vhd proj/src/Primitives/onescomp_N.vhd proj/src/Primitives/full_adder.vhd proj/src/Primitives/mux2t1_N.vhd proj/src/Primitives/mux32t1_32.vhd proj/src/Primitives/andg2.vhd proj/src/PC_Reg/pc_reg.vhd proj/src/PC_Reg/pc_dffg.vhd proj/src/Fetch Logic/mux2t1.vhd proj/src/Fetch Logic/fetch_logic.vhd proj/src/ALU/ALUcontrol.vhd proj/src/ALU/replicator.vhd proj/src/ALU/alu.vhd proj/src/Control Logic/control.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -85,5 +85,5 @@ Generic map will be ignored.
 -- Compiling architecture structural of alu
 -- Compiling entity control
 -- Compiling architecture behavioral of control
-End time: 00:12:14 on Oct 29,2024, Elapsed time: 0:00:00
+End time: 00:53:25 on Oct 29,2024, Elapsed time: 0:00:00
 Errors: 0, Warnings: 3

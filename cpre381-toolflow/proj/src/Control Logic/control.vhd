@@ -74,10 +74,12 @@ process(i_opcode, i_func)
 	o_Jump <= '1';
 
 	elsif (i_opcode = "000100") then --beq 
+	o_signExt <= '1';
 	o_Branch <= '1';
 	
 	elsif (i_opcode = "000101") then --bne 
 	-- o_Branch <= '1';
+	o_signExt <= '1';
 	o_BNE	 <= '1';
 
     elsif (i_opcode = "001000") then --addi 
@@ -92,6 +94,7 @@ process(i_opcode, i_func)
 
 
 	elsif (i_opcode = "001010") then --slti 
+	o_signExt <= '1';
 	o_ALUSrc <= '1';
 	o_RegWr <= '1';
 

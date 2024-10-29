@@ -14,10 +14,6 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name TOP_LEVEL_ENTITY MIPS_Processor
 set_global_assignment -name VHDL_INPUT_VERSION VHDL_2008
-set_global_assignment -name VHDL_FILE "/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/32-Bit/andg2.vhd"
-set_global_assignment -name VHDL_FILE "/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/32-Bit/invg.vhd"
-set_global_assignment -name VHDL_FILE "/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/32-Bit/org2.vhd"
-set_global_assignment -name VHDL_FILE "/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/32-Bit/xorg2.vhd"
 set_global_assignment -name VHDL_FILE "/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd"
 set_global_assignment -name VHDL_FILE "/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/alu.vhd"
 set_global_assignment -name VHDL_FILE "/home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/replicator.vhd"

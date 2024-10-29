@@ -113,6 +113,10 @@ end component;
     o_C_out <= '0';
 
     with i_ALUCTRL select
+    s_shamt <= i_OP_B(10 downto 6) when "1001" | "1010" | "1011",
+                "10000" when others;
+
+    with i_ALUCTRL select
         s_add_sub <= '1' when "1000" | "0110" | "0111", --sets sub bit to 1 when sub or subu or slt
                      '0' when others;
 
@@ -123,15 +127,7 @@ end component;
     with i_ALUCTRL select
         s_shift_type <= '1' when "1011",
                         '0' when others;
-
- --1001 sll
--- 1010 srl
--- 1011 sra
                         
-    with i_ALUCTRL select
-        s_shamt <= "10000" when "0100",
-                   i_OP_B(4 downto 0) when others;
-
     with i_ALUCTRL select
         s_shift_me <= i_OP_B when "0100",
                       i_OP_A when others;       

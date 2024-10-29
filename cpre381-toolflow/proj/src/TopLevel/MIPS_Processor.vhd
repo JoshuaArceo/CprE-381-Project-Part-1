@@ -357,8 +357,6 @@ architecture structure of MIPS_Processor is
         o_data   => s_ImmExt
     );
 
-  
-
     ALUSrc: mux2t1_N
     generic map(N => N)
     port map(
@@ -368,13 +366,6 @@ architecture structure of MIPS_Processor is
       o_O => s_ALU_B_in
     );
 
-    ALUCtrl: ALUcontrol
-    port map(
-      i_func => s_inst_func,
-      i_opcode => s_inst_opcode,
-      s_out => s_ALUOP 
-    );
-
     ALUSrcShift: mux2t1_N
     generic map(N => N)
     port map(
@@ -382,6 +373,13 @@ architecture structure of MIPS_Processor is
       i_D0 => s_Reg_A,
       i_D1 => s_Reg_B,
       o_O => s_ALU_A_In
+    );
+
+    ALUCtrl: ALUcontrol
+    port map(
+      i_func => s_inst_func,
+      i_opcode => s_inst_opcode,
+      s_out => s_ALUOP 
     );
 
     ALU0: alu

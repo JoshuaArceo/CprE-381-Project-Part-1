@@ -113,12 +113,12 @@ end component;
     end component;
     
     signal s_adder, s_shifter, s_and, s_or, s_xor, s_out, s_slt, s_repl, s_nor, s_shift_me : std_logic_vector(31 downto 0);
-    signal s_add_sub, s_cout, s_overflow, s_out_overflow, s_zero, s_shift_dir, s_shift_type, s_notCout : std_logic;
+    signal s_add_sub, s_overflow, s_out_overflow, s_zero, s_shift_dir, s_shift_type, s_notCout : std_logic;
     signal s_shamt  : std_logic_vector(4 downto 0);
 
     begin 
 
-    o_C_out <= '0';
+
 
     with i_ALUCTRL select
     s_shamt <="10000" when "0100" ,
@@ -161,7 +161,7 @@ end component;
         i_nAdd_Sub => s_add_sub,
         o_S => s_adder,
         o_OF => s_overflow,
-        o_Cout => s_cout
+        o_Cout => o_C_OUT
     );
 
     xor32: xor_32bit
@@ -249,7 +249,6 @@ end component;
 
 
     o_F <= s_out;
-    o_C_OUT <= s_cout;
     o_OVERFLOW  <= s_out_overflow;
     o_ZERO  <= s_zero;
 

@@ -1,0 +1,357 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
+    Info: Copyright (C) 2020  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Tue Oct 29 01:08:03 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off toolflow -c toolflow
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd
+    Info (12022): Found design unit 1: ALUcontrol-structural File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 12
+    Info (12023): Found entity 1: ALUcontrol File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/alu.vhd
+    Info (12022): Found design unit 1: alu-structural File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/alu.vhd Line: 36
+    Info (12023): Found entity 1: alu File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/alu.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/replicator.vhd
+    Info (12022): Found design unit 1: replicator-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/replicator.vhd Line: 14
+    Info (12023): Found entity 1: replicator File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/replicator.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Barrel_Shifter/shifter.vhd
+    Info (12022): Found design unit 1: shifter-structural File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Barrel_Shifter/shifter.vhd Line: 19
+    Info (12023): Found entity 1: shifter File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Barrel_Shifter/shifter.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Control Logic/control.vhd
+    Info (12022): Found design unit 1: control-behavioral File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Control Logic/control.vhd Line: 25
+    Info (12023): Found entity 1: control File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Control Logic/control.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/fetch_logic.vhd
+    Info (12022): Found design unit 1: fetch_logic-structural File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/fetch_logic.vhd Line: 22
+    Info (12023): Found entity 1: fetch_logic File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/fetch_logic.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/mux2t1.vhd
+    Info (12022): Found design unit 1: mux2t1-structure File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/mux2t1.vhd Line: 13
+    Info (12023): Found entity 1: mux2t1 File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/mux2t1.vhd Line: 4
+Info (12021): Found 2 design units, including 0 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/MIPS_types.vhd
+    Info (12022): Found design unit 1: MIPS_types File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/MIPS_types.vhd Line: 15
+    Info (12022): Found design unit 2: MIPS_types-body File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/MIPS_types.vhd Line: 33
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/PC_Reg/pc_dffg.vhd
+    Info (12022): Found design unit 1: pc_dffg-mixed File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/PC_Reg/pc_dffg.vhd Line: 14
+    Info (12023): Found entity 1: pc_dffg File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/PC_Reg/pc_dffg.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/PC_Reg/pc_reg.vhd
+    Info (12022): Found design unit 1: pc_reg-structural File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/PC_Reg/pc_reg.vhd Line: 13
+    Info (12023): Found entity 1: pc_reg File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/PC_Reg/pc_reg.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/Adder.vhd
+    Info (12022): Found design unit 1: Adder-behavior File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/Adder.vhd Line: 35
+    Info (12023): Found entity 1: Adder File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/Adder.vhd Line: 26
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/add_sub_N.vhd
+    Info (12022): Found design unit 1: add_sub_N-structure File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/add_sub_N.vhd Line: 14
+    Info (12023): Found entity 1: add_sub_N File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/add_sub_N.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/and_32bit.vhd
+    Info (12022): Found design unit 1: and_32bit-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/and_32bit.vhd Line: 13
+    Info (12023): Found entity 1: and_32bit File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/and_32bit.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/andg2.vhd
+    Info (12022): Found design unit 1: andg2-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/andg2.vhd Line: 31
+    Info (12023): Found entity 1: andg2 File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/andg2.vhd Line: 23
+Info (12021): Found 1 design units, including 0 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/bus_6digit.vhd
+    Info (12022): Found design unit 1: bus_6digit File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/bus_6digit.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/decoder_5t32.vhd
+    Info (12022): Found design unit 1: decoder_5t32-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/decoder_5t32.vhd Line: 11
+    Info (12023): Found entity 1: decoder_5t32 File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/decoder_5t32.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd
+    Info (12022): Found design unit 1: dffg-mixed File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 33
+    Info (12023): Found entity 1: dffg File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 23
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/extend16t32.vhd
+    Info (12022): Found design unit 1: extend16t32-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/extend16t32.vhd Line: 12
+    Info (12023): Found entity 1: extend16t32 File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/extend16t32.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/full_adder.vhd
+    Info (12022): Found design unit 1: full_adder-structure File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/full_adder.vhd Line: 12
+    Info (12023): Found entity 1: full_adder File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/full_adder.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/invg.vhd
+    Info (12022): Found design unit 1: invg-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/invg.vhd Line: 30
+    Info (12023): Found entity 1: invg File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/invg.vhd Line: 23
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/mux2t1_N.vhd
+    Info (12022): Found design unit 1: mux2t1_N-structural File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/mux2t1_N.vhd Line: 30
+    Info (12023): Found entity 1: mux2t1_N File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/mux2t1_N.vhd Line: 21
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/mux2t1_df.vhd
+    Info (12022): Found design unit 1: mux2t1_df-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/mux2t1_df.vhd Line: 13
+    Info (12023): Found entity 1: mux2t1_df File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/mux2t1_df.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/mux32t1_32.vhd
+    Info (12022): Found design unit 1: mux32t1_32-Regflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/mux32t1_32.vhd Line: 45
+    Info (12023): Found entity 1: mux32t1_32 File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/mux32t1_32.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/nor_32bit.vhd
+    Info (12022): Found design unit 1: nor_32bit-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/nor_32bit.vhd Line: 13
+    Info (12023): Found entity 1: nor_32bit File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/nor_32bit.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/onescomp_N.vhd
+    Info (12022): Found design unit 1: onescomp_N-structural File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/onescomp_N.vhd Line: 11
+    Info (12023): Found entity 1: onescomp_N File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/onescomp_N.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/or_32bit.vhd
+    Info (12022): Found design unit 1: or_32bit-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/or_32bit.vhd Line: 13
+    Info (12023): Found entity 1: or_32bit File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/or_32bit.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/org2.vhd
+    Info (12022): Found design unit 1: org2-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/org2.vhd Line: 31
+    Info (12023): Found entity 1: org2 File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/org2.vhd Line: 23
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/reg_N.vhd
+    Info (12022): Found design unit 1: reg_N-structural File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/reg_N.vhd Line: 14
+    Info (12023): Found entity 1: reg_N File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/reg_N.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/regfile.vhd
+    Info (12022): Found design unit 1: regfile-structural File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/regfile.vhd Line: 21
+    Info (12023): Found entity 1: regfile File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/regfile.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/ripple_adder_N.vhd
+    Info (12022): Found design unit 1: ripple_adder_N-structure File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/ripple_adder_N.vhd Line: 14
+    Info (12023): Found entity 1: ripple_adder_N File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/ripple_adder_N.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/xor_32bit.vhd
+    Info (12022): Found design unit 1: xor_32bit-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/xor_32bit.vhd Line: 13
+    Info (12023): Found entity 1: xor_32bit File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/xor_32bit.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/xorg2.vhd
+    Info (12022): Found design unit 1: xorg2-dataflow File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/xorg2.vhd Line: 31
+    Info (12023): Found entity 1: xorg2 File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/xorg2.vhd Line: 23
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd
+    Info (12022): Found design unit 1: MIPS_Processor-structure File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 35
+    Info (12023): Found entity 1: MIPS_Processor File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 23
+Info (12021): Found 2 design units, including 1 entities, in source file /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/mem.vhd
+    Info (12022): Found design unit 1: mem-rtl File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/mem.vhd Line: 27
+    Info (12023): Found entity 1: mem File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/mem.vhd Line: 8
+Info (12127): Elaborating entity "MIPS_Processor" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at MIPS_Processor.vhd(54): object "s_Halt" assigned a value but never read File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 54
+Warning (10036): Verilog HDL or VHDL warning at MIPS_Processor.vhd(57): object "s_Ovfl" assigned a value but never read File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 57
+Warning (10036): Verilog HDL or VHDL warning at MIPS_Processor.vhd(63): object "s_inst_shamt" assigned a value but never read File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 63
+Warning (10036): Verilog HDL or VHDL warning at MIPS_Processor.vhd(75): object "s_ALU_COUT" assigned a value but never read File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 75
+Info (12128): Elaborating entity "mem" for hierarchy "mem:IMem" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 249
+Info (12128): Elaborating entity "pc_reg" for hierarchy "pc_reg:pcreg" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 282
+Info (12128): Elaborating entity "dffg" for hierarchy "pc_reg:pcreg|dffg:\generateLower:0:DFFGIL" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/PC_Reg/pc_reg.vhd Line: 37
+Info (12128): Elaborating entity "pc_dffg" for hierarchy "pc_reg:pcreg|pc_dffg:DFFGI" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/PC_Reg/pc_reg.vhd Line: 46
+Info (12128): Elaborating entity "control" for hierarchy "control:control0" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 292
+Info (12128): Elaborating entity "fetch_logic" for hierarchy "fetch_logic:fetch" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 311
+Info (12128): Elaborating entity "ripple_adder_N" for hierarchy "fetch_logic:fetch|ripple_adder_N:PC_Add4" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/fetch_logic.vhd Line: 83
+Info (12128): Elaborating entity "full_adder" for hierarchy "fetch_logic:fetch|ripple_adder_N:PC_Add4|full_adder:\G_NBit_Adders:0:adder" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/ripple_adder_N.vhd Line: 31
+Info (12128): Elaborating entity "xorg2" for hierarchy "fetch_logic:fetch|ripple_adder_N:PC_Add4|full_adder:\G_NBit_Adders:0:adder|xorg2:xor1" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/full_adder.vhd Line: 35
+Info (12128): Elaborating entity "andg2" for hierarchy "fetch_logic:fetch|ripple_adder_N:PC_Add4|full_adder:\G_NBit_Adders:0:adder|andg2:and1" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/full_adder.vhd Line: 45
+Info (12128): Elaborating entity "org2" for hierarchy "fetch_logic:fetch|ripple_adder_N:PC_Add4|full_adder:\G_NBit_Adders:0:adder|org2:or1" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/full_adder.vhd Line: 55
+Info (12128): Elaborating entity "shifter" for hierarchy "fetch_logic:fetch|shifter:Branch_Shifter" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/fetch_logic.vhd Line: 94
+Info (12128): Elaborating entity "mux2t1_N" for hierarchy "fetch_logic:fetch|shifter:Branch_Shifter|mux2t1_N:dir_mux" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Barrel_Shifter/shifter.vhd Line: 51
+Info (12128): Elaborating entity "mux2t1_df" for hierarchy "fetch_logic:fetch|shifter:Branch_Shifter|mux2t1_N:dir_mux|mux2t1_df:\G_NBit_MUX:0:MUXI" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/mux2t1_N.vhd Line: 43
+Info (12128): Elaborating entity "invg" for hierarchy "fetch_logic:fetch|invg:notALU_Zero" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Fetch Logic/fetch_logic.vhd Line: 118
+Info (12128): Elaborating entity "mux2t1_N" for hierarchy "mux2t1_N:muxRegWrite0" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 327
+Info (12128): Elaborating entity "regfile" for hierarchy "regfile:regFile0" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 345
+Info (12128): Elaborating entity "decoder_5t32" for hierarchy "regfile:regFile0|decoder_5t32:decoder" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/regfile.vhd Line: 89
+Info (12128): Elaborating entity "reg_N" for hierarchy "regfile:regFile0|reg_N:reg_zero" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/regfile.vhd Line: 96
+Info (12128): Elaborating entity "reg_N" for hierarchy "regfile:regFile0|reg_N:\G_32_REG:1:reg_inst" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/regfile.vhd Line: 106
+Info (12128): Elaborating entity "mux32t1_32" for hierarchy "regfile:regFile0|mux32t1_32:muxA" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/regfile.vhd Line: 118
+Info (12128): Elaborating entity "extend16t32" for hierarchy "extend16t32:signExt" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 364
+Info (12128): Elaborating entity "ALUcontrol" for hierarchy "ALUcontrol:ALUCtrl" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 389
+Warning (10631): VHDL Process Statement warning at ALUcontrol.vhd(17): inferring latch(es) for signal or variable "s_out", which holds its previous value in one or more paths through the process File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 17
+Info (10041): Inferred latch for "s_out[0]" at ALUcontrol.vhd(17) File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 17
+Info (10041): Inferred latch for "s_out[1]" at ALUcontrol.vhd(17) File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 17
+Info (10041): Inferred latch for "s_out[2]" at ALUcontrol.vhd(17) File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 17
+Info (10041): Inferred latch for "s_out[3]" at ALUcontrol.vhd(17) File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 17
+Info (12128): Elaborating entity "alu" for hierarchy "alu:ALU0" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 396
+Info (12128): Elaborating entity "and_32bit" for hierarchy "alu:ALU0|and_32bit:and32" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/alu.vhd Line: 143
+Info (12128): Elaborating entity "or_32bit" for hierarchy "alu:ALU0|or_32bit:or32" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/alu.vhd Line: 150
+Info (12128): Elaborating entity "add_sub_N" for hierarchy "alu:ALU0|add_sub_N:addSub" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/alu.vhd Line: 157
+Info (12128): Elaborating entity "onescomp_N" for hierarchy "alu:ALU0|add_sub_N:addSub|onescomp_N:NBit_inv" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/add_sub_N.vhd Line: 64
+Info (12128): Elaborating entity "mux2t1_N" for hierarchy "alu:ALU0|add_sub_N:addSub|mux2t1_N:NBit_mux" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/add_sub_N.vhd Line: 68
+Info (12128): Elaborating entity "xor_32bit" for hierarchy "alu:ALU0|xor_32bit:xor32" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/alu.vhd Line: 167
+Info (12128): Elaborating entity "replicator" for hierarchy "alu:ALU0|replicator:repl" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/alu.vhd Line: 196
+Info (12128): Elaborating entity "nor_32bit" for hierarchy "alu:ALU0|nor_32bit:nor32" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/alu.vhd Line: 203
+Info (276014): Found 3 instances of uninferred RAM logic
+    Info (276007): RAM logic "mem:IMem|ram" is uninferred due to asynchronous read logic File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/mem.vhd Line: 35
+    Info (276007): RAM logic "mem:DMem|ram" is uninferred due to asynchronous read logic File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/mem.vhd Line: 35
+    Info (276007): RAM logic "regfile:regFile0|decoder_5t32:decoder|Ram0" is uninferred due to asynchronous read logic File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/decoder_5t32.vhd Line: 16
+Warning (276002): Cannot convert all sets of registers into RAM megafunctions when creating nodes; therefore, the resulting number of registers remaining in design can cause longer compilation time or result in insufficient memory to complete Analysis and Synthesis
+Warning (13012): Latch ALUcontrol:ALUCtrl|s_out[3] has unsafe behavior File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 17
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal pc_reg:pcreg|dffg:\generateLower:10:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+Warning (13012): Latch ALUcontrol:ALUCtrl|s_out[1] has unsafe behavior File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 17
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal pc_reg:pcreg|dffg:\generateLower:11:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+Warning (13012): Latch ALUcontrol:ALUCtrl|s_out[2] has unsafe behavior File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 17
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal pc_reg:pcreg|dffg:\generateLower:10:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+Warning (13012): Latch ALUcontrol:ALUCtrl|s_out[0] has unsafe behavior File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 17
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal pc_reg:pcreg|dffg:\generateLower:11:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+Info (13000): Registers with preset signals will power-up high File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/PC_Reg/pc_dffg.vhd Line: 34
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 22 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "iInstAddr[0]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[1]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[12]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[13]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[14]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[15]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[16]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[17]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[18]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[19]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[20]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[21]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[22]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[23]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[24]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[25]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[26]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[27]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[28]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[29]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[30]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+    Warning (15610): No output dependent on input pin "iInstAddr[31]" File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 28
+Info (21057): Implemented 114784 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 67 input pins
+    Info (21059): Implemented 32 output pins
+    Info (21061): Implemented 114685 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 38 warnings
+    Info: Peak virtual memory: 1263 megabytes
+    Info: Processing ended: Tue Oct 29 01:10:49 2024
+    Info: Elapsed time: 00:02:46
+    Info: Total CPU time (on all processors): 00:02:32
+Info: *******************************************************************
+Info: Running Quartus Prime Fitter
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
+    Info: Copyright (C) 2020  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Tue Oct 29 01:10:53 2024
+Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off toolflow -c toolflow
+Info: qfit2_default_script.tcl version: #1
+Info: Project  = toolflow
+Info: Revision = toolflow
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (119006): Selected device EP4CE115F29C7 for design "toolflow"
+Info (21076): High junction temperature operating condition is not set. Assuming a default value of '85'.
+Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '0'.
+Info (171003): Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
+Info (176444): Device migration not selected. If you intend to use device migration later, you may need to change the pin assignments as they may be incompatible with other devices
+    Info (176445): Device EP4CE40F29C7 is compatible
+    Info (176445): Device EP4CE40F29I7 is compatible
+    Info (176445): Device EP4CE30F29C7 is compatible
+    Info (176445): Device EP4CE30F29I7 is compatible
+    Info (176445): Device EP4CE55F29C7 is compatible
+    Info (176445): Device EP4CE55F29I7 is compatible
+    Info (176445): Device EP4CE75F29C7 is compatible
+    Info (176445): Device EP4CE75F29I7 is compatible
+    Info (176445): Device EP4CE115F29I7 is compatible
+Info (169124): Fitter converted 5 user pins into dedicated programming pins
+    Info (169125): Pin ~ALTERA_ASDO_DATA1~ is reserved at location F4
+    Info (169125): Pin ~ALTERA_FLASH_nCE_nCSO~ is reserved at location E2
+    Info (169125): Pin ~ALTERA_DCLK~ is reserved at location P3
+    Info (169125): Pin ~ALTERA_DATA0~ is reserved at location N7
+    Info (169125): Pin ~ALTERA_nCEO~ is reserved at location P28
+Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
+Critical Warning (169085): No exact pin location assignment(s) for 99 pins of 99 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report.
+Warning (335093): The Timing Analyzer is analyzing 4 combinational loops as latches. For more details, run the Check Timing command in the Timing Analyzer or view the "User-Specified and Inferred Latches" table in the Analysis & Synthesis report.
+Info (332104): Reading SDC File: 'toolflow.sdc'
+Warning (332060): Node: iInstAddr[10] was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Latch ALUcontrol:ALUCtrl|s_out[1] is being clocked by iInstAddr[10]
+Info (332129): Detected timing requirements -- optimizing circuit to achieve only the specified requirements
+Info (332111): Found 1 clocks
+    Info (332111):   Period   Clock Name
+    Info (332111): ======== ============
+    Info (332111):   20.000         iCLK
+Info (176353): Automatically promoted node iCLK~input (placed in PIN J1 (CLK1, DIFFCLK_0n)) File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 25
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G2
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node pc_reg:pcreg|dffg:\generateLower:2:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+        Info (176357): Destination node pc_reg:pcreg|dffg:\generateLower:3:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+        Info (176357): Destination node pc_reg:pcreg|dffg:\generateLower:4:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+        Info (176357): Destination node pc_reg:pcreg|dffg:\generateLower:5:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+        Info (176357): Destination node pc_reg:pcreg|dffg:\generateLower:6:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+        Info (176357): Destination node pc_reg:pcreg|dffg:\generateLower:7:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+        Info (176357): Destination node pc_reg:pcreg|dffg:\generateLower:8:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+        Info (176357): Destination node pc_reg:pcreg|dffg:\generateLower:9:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+        Info (176357): Destination node pc_reg:pcreg|dffg:\generateLower:10:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+        Info (176357): Destination node pc_reg:pcreg|dffg:\generateLower:11:DFFGIL|s_Q File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/Primitives/dffg.vhd Line: 53
+        Info (176358): Non-global destination nodes limited to 10 nodes
+Info (176353): Automatically promoted node ALUcontrol:ALUCtrl|s_out[3]~9  File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/ALU/ALUcontrol.vhd Line: 17
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+Info (176353): Automatically promoted node iRST~input (placed in PIN Y2 (CLK2, DIFFCLK_1p)) File: /home/jarceo/CprE381/Proj1/cpre381-toolflow/proj/src/TopLevel/MIPS_Processor.vhd Line: 26
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G4
+Info (176233): Starting register packing
+Info (176235): Finished register packing
+    Extra Info (176219): No registers were packed into other blocks
+Info (176214): Statistics of I/O pins that need to be placed that use the same VCCIO and VREF, before I/O pin placement
+    Info (176211): Number of I/O pins in group: 97 (unused VREF, 2.5V VCCIO, 65 input, 32 output, 0 bidirectional)
+        Info (176212): I/O standards used: 2.5 V.
+Info (176215): I/O bank details before I/O pin placement
+    Info (176214): Statistics of I/O banks
+        Info (176213): I/O bank number 1 does not use VREF pins and has undetermined VCCIO pins. 5 total pin(s) used --  51 pins available
+        Info (176213): I/O bank number 2 does not use VREF pins and has undetermined VCCIO pins. 1 total pin(s) used --  62 pins available
+        Info (176213): I/O bank number 3 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  73 pins available
+        Info (176213): I/O bank number 4 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  71 pins available
+        Info (176213): I/O bank number 5 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  65 pins available
+        Info (176213): I/O bank number 6 does not use VREF pins and has undetermined VCCIO pins. 1 total pin(s) used --  57 pins available
+        Info (176213): I/O bank number 7 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  72 pins available
+        Info (176213): I/O bank number 8 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  71 pins available
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:46
+Info (14896): Fitter has disabled Advanced Physical Optimization because it is not supported for the current family.
+Info (170189): Fitter placement preparation operations beginning
+Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:10
+Info (170191): Fitter placement operations beginning
+Info (170137): Fitter placement was successful
+Info (170192): Fitter placement operations ending: elapsed time is 00:01:49
+Info (170193): Fitter routing operations beginning
+Info (170195): Router estimated average interconnect usage is 35% of the available device resources
+    Info (170196): Router estimated peak interconnect usage is 60% of the available device resources in the region that extends from location X69_Y24 to location X80_Y36
+Warning (16684): The router is trying to resolve an exceedingly large amount of congestion. At the moment, it predicts long routing run time and/or significant setup or hold timing failures. Congestion details can be found in the Chip Planner.
+Info (188005): Design requires adding a large amount of routing delay for some signals to meet hold time requirements, and there is an excessive demand for the available routing resources. The Fitter is reducing the routing delays of some signals to help the routing algorithm converge, but doing so may cause hold time failures. For more information, refer to the "Estimated Delay Added for Hold Timing" section in the Fitter report.
+Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
+    Info (170201): Optimizations that may affect the design's routability were skipped
+Info (170194): Fitter routing operations ending: elapsed time is 00:27:36
+Info (11888): Total time spent on timing analysis during the Fitter is 477.35 seconds.
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:17
+Info (144001): Generated suppressed messages file /home/jarceo/CprE381/Proj1/cpre381-toolflow/internal/QuartusWork/output_files/toolflow.fit.smsg
+Info: Quartus Prime Fitter was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 3559 megabytes
+    Info: Processing ended: Tue Oct 29 01:42:24 2024
+    Info: Elapsed time: 00:31:31
+    Info: Total CPU time (on all processors): 00:43:36
+Info: *******************************************************************
+Info: Running Quartus Prime Assembler
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
+    Info: Copyright (C) 2020  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Tue Oct 29 01:42:28 2024
+Info: Command: quartus_asm --read_settings_files=on --write_settings_files=off toolflow -c toolflow
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (115031): Writing out detailed assembly data for power analysis
+Info (115030): Assembler is generating device programming files
+Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 895 megabytes
+    Info: Processing ended: Tue Oct 29 01:42:35 2024
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:04

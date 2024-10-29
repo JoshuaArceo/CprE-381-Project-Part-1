@@ -290,9 +290,6 @@ end component;
     );
 
     control0: control 
-    generic map(ADDR_WIDTH => ADDR_WIDTH,
-        DATA_WIDTH => N
-    )
     port map(
         i_opcode => s_inst_opcode,
         i_func => s_inst_func,

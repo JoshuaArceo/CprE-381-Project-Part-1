@@ -1,0 +1,5 @@
+proj/mips/ToFix/beq_2.s
+proj/mips/ToFix/slti_1.s
+proj/mips/ToFix/slti_2.s
+proj/mips/ToFix/slti_3.s
+proj/mips/ToFix/slti_6.s

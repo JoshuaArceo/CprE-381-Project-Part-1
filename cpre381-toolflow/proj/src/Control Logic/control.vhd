@@ -112,11 +112,13 @@ process(i_opcode, i_func)
 	o_RegWr <= '1';
 
 	elsif (i_opcode = "100011") then --lw 
+	o_signExt <= '1';
 	o_ALUSrc <= '1';
 	o_MemtoReg <= '1';
 	o_RegWr <= '1';
 
     elsif (i_opcode = "101011") then --sw
+	o_signExt <= '1';
 	o_ALUSrc <= '1';
 	o_DMemWr <= '1';
 	

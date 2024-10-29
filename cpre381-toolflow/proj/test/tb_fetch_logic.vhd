@@ -54,7 +54,7 @@ begin
     begin
         -- Simple PC Increment
         s_iPC <= X"00000000";
-        s_iJAddr <= X"0000000";
+        s_iJAddr <= (others => '0');
         s_iImm <= X"00000000";
         s_iRegA <= X"00000000";
         s_iBranch <= '0';
@@ -77,7 +77,8 @@ begin
 
         -- Jump
         s_iPC <= X"00000020";
-        s_iJAddr <= X"0000001";
+        s_iJAddr <= (others => '0');
+        s_iJAddr(0) <= '1';
         s_iJump <= '1';
         wait for 10 ns;
         assert s_oPC = X"00000044" 

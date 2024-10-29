@@ -76,7 +76,7 @@ architecture structural of fetch_logic is
 
 
     signal s_PC4, s_shifted_imm, s_branch_addr, s_jumpAddr, s_branchOut, s_jrOut : std_logic_vector(N-1 downto 0); 
-    signal s_outSelect, s_BranchSelect, s_BranchZero, s_BNEZero, s_not_ALU_Zero  : std_logic;
+    signal s_BranchSelect, s_BranchZero, s_BNEZero, s_not_ALU_Zero  : std_logic;
 
 begin
 
@@ -160,7 +160,5 @@ begin
     );
 
 
-    
-   
 
 END structural;

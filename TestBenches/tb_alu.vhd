@@ -13,7 +13,7 @@ component alu is
     port(
         i_OP_A      : in    std_logic_vector(N-1 downto 0);
         i_OP_B      : in    std_logic_vector(N-1 downto 0);
-        i_ALUCTRL     : in    std_logic_vector(3 downto 0); -- 4 bit to support 13 functions
+        i_ALUCTRL   : in    std_logic_vector(3 downto 0); -- 4 bit to support 13 functions
         o_F         : out   std_logic_vector(N-1 downto 0);
         o_C_OUT     : out   std_logic;
         o_OVERFLOW  : out   std_logic;

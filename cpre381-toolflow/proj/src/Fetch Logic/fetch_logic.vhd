@@ -5,7 +5,6 @@ entity fetch_logic is
     generic (N : INTEGER := 32); 
     port (
         i_PC              : in std_logic_vector(N - 1 downto 0); 
-        -- i_RST             : in std_logic;
         i_JAddr           : in std_logic_vector(25 downto 0);
         i_Imm             : in std_logic_vector(N - 1 downto 0);
         i_RegA            : in std_logic_vector(N - 1 downto 0);
@@ -76,7 +75,7 @@ architecture structural of fetch_logic is
     end component;
 
 
-    signal s_PC, s_PC4, s_shifted_imm, s_branch_addr, s_jumpAddr, s_branchOut, s_jrOut : std_logic_vector(N-1 downto 0); 
+    signal s_PC4, s_shifted_imm, s_branch_addr, s_jumpAddr, s_branchOut, s_jrOut : std_logic_vector(N-1 downto 0); 
     signal s_outSelect, s_BranchSelect, s_BranchZero, s_BNEZero, s_not_ALU_Zero  : std_logic;
 
 begin
@@ -159,9 +158,6 @@ begin
         i_D1 => s_jumpAddr,
         o_O => o_PC
     );
-
-  
-
 
 
     
